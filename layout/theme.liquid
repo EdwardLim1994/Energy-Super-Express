@@ -37,6 +37,9 @@
     <!-- shopify/apps -->
     {{ content_for_header }}
 
+    {{ 'bootstrap/bootstrap.min.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'bootstrap/bootstrap.bundle.min.js' | asset_url }}" defer="defer"></script>
+
     {% liquid
       # Always add entrypoint below content_for_header
       render 'adastra' with 'base.scss'
