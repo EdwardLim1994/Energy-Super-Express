@@ -1,3 +1,4 @@
+import * as bootstrap from "bootstrap/dist/js/bootstrap.bundle.min";
 import { createApp, ref } from "vue/dist/vue.esm-bundler";
 
 import { appConfig } from "@/config";
