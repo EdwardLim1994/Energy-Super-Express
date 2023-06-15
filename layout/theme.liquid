@@ -37,6 +37,9 @@
     <!-- shopify/apps -->
     {{ content_for_header }}
 
+    {{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'bootstrap.bundle.min.js' | asset_url }}" defer="defer"></script>
+
     {% liquid
       # Always add entrypoint below content_for_header
       render 'adastra' with 'base.scss'
@@ -44,12 +47,15 @@
     %}
   </head>
   <body>
+    {% section 'header' %}
     <main
       id="MainContent"
       tabindex="-1"
+      class="pt-5 "
     >
       {{ content_for_layout }}
     </main>
+    {% section 'footer' %}
 
     <script>
       window.shopUrl = '{{ request.origin }}';

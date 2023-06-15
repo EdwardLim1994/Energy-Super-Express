@@ -1,25 +1,24 @@
 import { createApp, ref } from "vue/dist/vue.esm-bundler";
 
-import "vuetify/styles";
-import { createVuetify } from "vuetify";
-import * as components from "vuetify/components";
-import * as directives from "vuetify/directives";
+import { appConfig } from "@/config";
 
-const vuetify = createVuetify({
-	components,
-	directives,
-});
+import headerApp from "@/sections/header";
+import accountRegisterFormApp from "@/sections/account-register";
+import accountLoginFormApp from "@/sections/account-login";
+import footerApp from "@/sections/footer";
+
+headerApp();
+footerApp();
+accountRegisterFormApp();
+accountLoginFormApp();
 
 createApp({
-	compilerOptions: {
-		delimiters: ["[[", "]]"],
-	},
+	...appConfig,
 	setup() {
 		const count = ref(0);
+
 		return {
 			count,
 		};
 	},
-})
-	.use(vuetify)
-	.mount("#hello-world");
+}).mount("#hello-world");

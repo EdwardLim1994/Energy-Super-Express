@@ -9,18 +9,17 @@
 		"check": "adastra check"
 	},
 	"dependencies": {
+		"bootstrap-icons": "^1.10.5",
 		"lodash": "^4.17.21",
-		"vue": "^3.2.47",
-		"vuetify": "^3.3.4"
+		"typescript-cookie": "^1.0.6",
+		"vue": "^3.3.4"
 	},
 	"devDependencies": {
 		"@types/lodash": "^4.14.195",
 		"@vitejs/plugin-vue": "^4.0.0",
 		"adastra-cli": "latest",
 		"adastra-plugin": "latest",
-		"autoprefixer": "^10.4.13",
-		"postcss": "^8.4.21",
-		"tailwindcss": "^3.2.7",
+		"sass": "^1.63.4",
 		"typescript": "^4.9.3",
 		"vite": "^4.1.4"
 	}

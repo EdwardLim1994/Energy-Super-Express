@@ -1,8 +1,8 @@
 {
-  "sections": {
-    "main": {
-      "type": "hello-world"
-    }
-  },
-  "order": ["main"]
+	"sections": {
+		"main": {
+			"type": "account-register"
+		}
+	},
+	"order": ["main"]
 }

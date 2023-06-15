@@ -1,0 +1,125 @@
+<section id="account-register-form" class="container w-50 mx-auto p-3 p-md-5">
+  <h1 class="mb-3 text-center">Register</h1>
+  {%- form 'create_customer' -%}
+    <div class="mb-3">
+      <label for="RegisterForm-FirstName" class="form-label">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="RegisterForm-FirstName"
+        autocomplete="given-name"
+        placeholder="John"
+        aria-required="true"
+        name="customer[first_name]"
+        {% if form.first_name %}
+          value="{{ form.first_name }}"
+        {% endif %}
+      >
+    </div>
+    <div class="mb-3">
+      <label for="RegisterForm-LastName" class="form-label">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="RegisterForm-LastName"
+        autocomplete="family-name"
+        placeholder="Smith"
+        aria-required="true"
+        name="customer[last_name]"
+        {% if form.last_name %}
+          value="{{ form.last_name }}"
+        {% endif %}
+      >
+    </div>
+
+    <div class="mb-3">
+      <label for="RegisterForm-email" class="form-label">Email address</label>
+      <input
+        type="email"
+        name="customer[email]"
+        class="form-control"
+        id="RegisterForm-email"
+        {% if form.email %}
+          value="{{ form.email }}"
+        {% endif %}
+        spellcheck="false"
+        autocapitalize="off"
+        autocomplete="email"
+        aria-required="true"
+        {% if form.errors contains 'email' %}
+          aria-invalid="true"
+          aria-describedby="RegisterForm-email-error"
+        {% endif %}
+        placeholder="xxxxxx@xxx.com"
+      >
+      {%- if form.errors contains 'email' -%}
+        <div id="RegisterForm-email-error" class="form-text text-danger">
+          {{ form.errors.translated_fields.email | capitalize }}
+          {{ form.errors.messages.email }}.
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="mb-3">
+      <label for="RegisterForm-password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="RegisterForm-password"
+        name="customer[password]"
+        aria-required="true"
+        v-model="password"
+        {% if form.errors contains 'password' %}
+          aria-invalid="true"
+          aria-describedby="RegisterForm-password-error"
+        {% endif %}
+        placeholder="123456abc"
+      >
+      {%- if form.errors contains 'password' -%}
+        <div id="RegisterForm-password-error" class="form-text text-danger">
+          {{ form.errors.translated_fields.password | capitalize }}
+          {{ form.errors.messages.password }}.
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="mb-3">
+      <label for="RegisterForm-password-confirm" class="form-label">Confirm Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="RegisterForm-password-confirm"
+        placeholder="123456abc"
+        v-model="confirmPassword"
+        :aria-invalid="!isPasswordMatch && confirmPassword"
+        :aria-describedby="!isPasswordMatch && confirmPassword ? RegisterForm-password-error : ''"
+      >
+      [[!isPasswordMatch && confirmPassword]]
+      <div
+        v-if="!isPasswordMatch && confirmPassword"
+        id="RegisterForm-password-error"
+        class="form-text text-danger"
+      >
+        Password not match
+      </div>
+    </div>
+    <div class="mb-3 form-check">
+      <input v-model="hasCheckedToS" type="checkbox" class="form-check-input" id="RegisterForm-TnC">
+      <label class="form-check-label" for="RegisterForm-TnC"
+        >I have agreed and accept <a class="link">Privary Policy</a> and <a class="link">Terms of Services</a></label
+      >
+    </div>
+    <button
+      type="submit"
+      :disabled="!isPasswordMatch || !confirmPassword || !hasCheckedToS"
+      class="btn btn-primary w-100"
+    >
+      Register
+    </button>
+    <p class="text-center mt-3">
+      Already have an account? <a class="link pe-auto" href="{{ routes.account_login_url }}">Login here</a>
+    </p>
+  {%- endform -%}
+</section>
+
+{% schema %}
+{}
+{% endschema %}
