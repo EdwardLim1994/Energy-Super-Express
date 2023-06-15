@@ -1,11 +1,13 @@
 {
-	"sections": {
-		"main": {
-			"type": "hello-world",
-			"settings": {
-				"heading": "account"
-			}
-		}
-	},
-	"order": ["main"]
+  "sections": {
+    "main": {
+      "type": "hello-world",
+      "settings": {
+        "heading": "account"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
 }

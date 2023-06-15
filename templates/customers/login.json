@@ -1,8 +1,12 @@
 {
-	"sections": {
-		"main": {
-			"type": "account-login"
-		}
-	},
-	"order": ["main"]
+  "sections": {
+    "main": {
+      "type": "account-login",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
 }

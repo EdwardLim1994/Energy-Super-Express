@@ -1,8 +1,12 @@
 {
-	"sections": {
-		"main": {
-			"type": "account-register"
-		}
-	},
-	"order": ["main"]
+  "sections": {
+    "main": {
+      "type": "account-register",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
 }
