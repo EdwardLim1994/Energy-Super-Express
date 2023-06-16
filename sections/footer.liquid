@@ -36,9 +36,9 @@
             {%- when 'footer_menu' -%}
               <li class="nav-item col-12  {{ medium_column }} ">
                 <hr class="d-block d-lg-none">
-                <h3 class="text-lg-center">{{ block.settings.footer_menu_title }}</h3>
+                <h3 class="text-lg-center">{{ block.settings.title }}</h3>
                 <ul class="nav flex-column align-items-lg-center row-gap-1">
-                  {%- for link in block.settings.footer_menu.links -%}
+                  {%- for link in block.settings.menu.links -%}
                     <li class="nav-item">
                       <a class="link link-secondary link-underline-opacity-0" href="{{ link.url }}">{{ link.title }}</a>
                     </li>
@@ -85,9 +85,8 @@
 
 {% schema %}
 {
-  "name": "footer",
+  "name": "Footer",
   "tag": "footer",
-  "max_blocks": 3,
   "blocks": [
     {
       "type": "@app"
@@ -100,13 +99,13 @@
         {
           "type": "link_list",
           "label": "Footer Menu",
-          "id": "footer_menu",
+          "id": "menu",
           "default": "footer"
         },
         {
           "type": "text",
           "label": "Footer Menu Title",
-          "id": "footer_menu_title",
+          "id": "title",
           "default": "Menu"
         }
       ]
@@ -146,6 +145,19 @@
         }
       ]
     }
-  ]
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "brand_info"
+      },
+      {
+        "type": "footer_menu"
+      },
+      {
+        "type": "form"
+      }
+    ]
+  }
 }
 {% endschema %}
