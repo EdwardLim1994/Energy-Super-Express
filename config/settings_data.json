@@ -13,10 +13,33 @@
       },
       "footer": {
         "type": "footer",
+        "blocks": {
+          "5e1b4404-23e7-4173-b716-9233a8785a63": {
+            "type": "brand_info",
+            "settings": {
+              "show_branding": true
+            }
+          },
+          "a4165996-80fa-4174-a8d2-62dbc1e100e4": {
+            "type": "footer_menu",
+            "settings": {
+              "footer_menu": "footer",
+              "footer_menu_title": "Menu"
+            }
+          },
+          "6779a95f-1478-4417-9723-34bd3780dd6b": {
+            "type": "form",
+            "settings": {
+              "form_type": "newsletter_form"
+            }
+          }
+        },
+        "block_order": [
+          "5e1b4404-23e7-4173-b716-9233a8785a63",
+          "a4165996-80fa-4174-a8d2-62dbc1e100e4",
+          "6779a95f-1478-4417-9723-34bd3780dd6b"
+        ],
         "settings": {
-          "footer_menu": "policy",
-          "show_branding": true,
-          "show_contact_form": true
         }
       }
     },
