@@ -1,4 +1,20 @@
-<section id="account-login-form" class="container w-50 mx-auto p-3 p-md-5">
+{% liquid
+  assign background_image = section.settings.background_image
+%}
+
+<section
+  id="account-login-form"
+  {% unless background_image %}
+    class="container w-50 mx-auto p-3 p-md-5"
+  {% endunless %}
+>
+  {%- if background_image -%}
+    <div class="row">
+      <div class="col-12 col-md-6 fill d-none d-md-flex">
+        <img class="img-fluid" src="{{ background_image | img_url }}" alt="{{ background_image.alt }}">
+      </div>
+      <div class="col-12 col-md-6 container px-auto p-3 p-md-5">
+  {%- endif -%}
   <h1 class="mb-3 text-center">Login</h1>
   {% form 'customer_login' %}
     {%- if form.errors -%}
@@ -50,4 +66,21 @@
       <a class="link pe-auto" href="{{ routes.account_register_url }}">Register here</a>
     </p>
   {% endform %}
+  {%- if background_image -%}
+  </div>
+</div>
+{%- endif -%}
 </section>
+
+{% schema %}
+{
+  "name": "Login Page",
+  "settings": [
+    {
+      "type": "image_picker",
+      "label": "Background Image",
+      "id": "background_image"
+    }
+  ]
+}
+{% endschema %}
