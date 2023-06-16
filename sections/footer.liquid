@@ -1,93 +1,67 @@
 {% liquid
-  assign footer_menu = section.settings.footer_menu
-  assign show_branding = section.settings.show_branding
-  assign show_contact_form = section.settings.show_contact_form
+  assign count = 0
+
+  for block in section.blocks
+    if block.type != '@app'
+      assign count = count | plus: 1
+    endif
+  endfor
 %}
 {% capture medium_column %}
-    {%- if show_branding and show_contact_form -%}
-        col-md-4
-    {%- elsif show_branding or show_contact_form -%}
-        col-md-6
-    {%- endif -%}
+  {%- if count == 3 -%}
+      col-lg-4
+  {%- elsif count == 2 -%}
+      col-lg-6
+  {%- endif -%}
 {% endcapture %}
 
 <section class="footer bg-body-tertiary" id="section-footer">
   <div class="container">
     <div class="py-3 my-4">
       <ul class="row nav row-gap-3 justify-content-center border-bottom pb-3 mb-3">
-        {%- if show_branding -%}
-          <li class="nav-item col-12 {{ medium_column }}">
-            {% if settings.logo != blank %}
-              {{ settings.logo | image_url: width: 600 | image_tag: class: 'w-100', alt: logo_alt, preload: true }}
-            {% else %}
-              <h2>
-                {{ shop.name }}
-              </h2>
-            {% endif %}
-          </li>
-        {%- endif -%}
-
-        <li class="nav-item col-12  {{ medium_column }} ">
-          <hr class="d-block d-md-none">
-          <h3 class="text-md-center">{{ footer_menu.title }}</h3>
-          <ul class="nav flex-column align-items-md-center row-gap-1">
-            {%- for link in footer_menu.links -%}
-              <li class="nav-item">
-                <a class="link link-secondary link-underline-opacity-0" href="{{ link.url }}">{{ link.title }}</a>
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              {% render block %}
+            {%- when 'brand_info' -%}
+              <li class="nav-item col-12 {{ medium_column }}">
+                {% if settings.logo != blank %}
+                  {{ settings.logo | image_url: width: 600 | image_tag: class: 'w-100', alt: logo_alt, preload: true }}
+                {% else %}
+                  <h2>
+                    {{ shop.name }}
+                  </h2>
+                {% endif %}
               </li>
-            {%- endfor -%}
-          </ul>
-        </li>
-        {%- if show_contact_form -%}
-          <li class="nav-item col-12 {{ medium_column }} ">
-            <hr class="d-block d-md-none">
-            <h3>Contact Us</h3>
-            {%- form 'contact', id: 'ContactForm' -%}
-              <div class="mb-3">
-                <label for="ContactForm-email" class="form-label">Email</label>
-                <input
-                  autocomplete="email"
-                  type="email"
-                  id="ContactForm-email"
-                  class="form-control"
-                  name="contact[email]"
-                  spellcheck="false"
-                  autocapitalize="off"
-                  value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-                  aria-required="true"
-                  {% if form.errors contains 'email' %}
-                    aria-invalid="true"
-                    aria-describedby="ContactForm-email-error"
-                  {% endif %}
-                  placeholder="xxxxxx@xxx.com"
-                >
-                {%- if form.errors contains 'email' -%}
-                  <div id="ContactForm-email-error" class="form-text text-danger">
-                    {{ form.errors.translated_fields.email | capitalize }}
-                    {{ form.errors.messages.email }}.
-                  </div>
-                {%- endif -%}
-              </div>
-              <div class="mb-3">
-                <label class="form-label" for="ContactForm-body"> Content </label>
-                <textarea
-                  rows="4"
-                  id="ContactForm-body"
-                  class="form-control"
-                  name="contact[body]"
-                >
-                      {{ form.body }}
-                    </textarea>
-              </div>
-
-              <button type="submit" class="btn btn-primary w-100">Submit</button>
-            {%- endform -%}
-          </li>
-        {%- endif -%}
+            {%- when 'footer_menu' -%}
+              <li class="nav-item col-12  {{ medium_column }} ">
+                <hr class="d-block d-lg-none">
+                <h3 class="text-lg-center">{{ block.settings.footer_menu_title }}</h3>
+                <ul class="nav flex-column align-items-lg-center row-gap-1">
+                  {%- for link in block.settings.footer_menu.links -%}
+                    <li class="nav-item">
+                      <a class="link link-secondary link-underline-opacity-0" href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+            {%- when 'form' -%}
+              <li class="nav-item col-12 {{ medium_column }} ">
+                <hr class="d-block d-lg-none">
+                {%- case block.settings.form_type -%}
+                  {%- when 'contact_form' -%}
+                    {% render 'footer-contactform' %}
+                  {%- when 'newsletter_form' -%}
+                    {% render 'footer-newsletter' %}
+                {%- endcase -%}
+              </li>
+          {%- endcase -%}
+          {% assign counter = counter | plus: 1 %}
+        {%- endfor -%}
       </ul>
       <div class="d-flex justify-content-between w-100">
         <p>&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: '/' }}</p>
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+        <ul class="nav col-lg-4 justify-content-end list-unstyled d-flex">
           <li class="ms-3">
             <a class="text-body-secondary" href="#">
               <i class="bi bi-twitter"></i>
@@ -111,26 +85,66 @@
 
 {% schema %}
 {
-  "name": "Footer",
+  "name": "footer",
   "tag": "footer",
-  "settings": [
+  "max_blocks": 3,
+  "blocks": [
     {
-      "type": "link_list",
-      "label": "Footer Menu",
-      "id": "footer_menu",
-      "default": "footer"
+      "type": "@app"
     },
     {
-      "type": "checkbox",
-      "label": "Show Branding?",
-      "id": "show_branding",
-      "default": true
+      "type": "footer_menu",
+      "name": "footer.link_list.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "link_list",
+          "label": "Footer Menu",
+          "id": "footer_menu",
+          "default": "footer"
+        },
+        {
+          "type": "text",
+          "label": "Footer Menu Title",
+          "id": "footer_menu_title",
+          "default": "Menu"
+        }
+      ]
     },
     {
-      "type": "checkbox",
-      "label": "Show contact form?",
-      "id": "show_contact_form",
-      "default": true
+      "type": "brand_info",
+      "name": "footer.brand_info.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "label": "Show Branding?",
+          "id": "show_branding",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "form",
+      "name": "footer.form.name",
+      "settings": [
+        {
+          "type": "radio",
+          "id": "form_type",
+          "label": "Form Type",
+          "options": [
+            {
+              "value": "contact_form",
+              "label": "Contact Form"
+            },
+            {
+              "value": "newsletter_form",
+              "label": "Newsletter Form"
+            }
+          ],
+          "default": "newsletter_form"
+        }
+      ]
     }
   ]
 }

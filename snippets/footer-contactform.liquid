@@ -1,0 +1,43 @@
+<section>
+  <h3>Contact Us</h3>
+  {%- form 'contact', id: 'ContactForm' -%}
+    <div class="mb-3">
+      <label for="ContactForm-email" class="form-label">Email</label>
+      <input
+        autocomplete="email"
+        type="email"
+        id="ContactForm-email"
+        class="form-control"
+        name="contact[email]"
+        spellcheck="false"
+        autocapitalize="off"
+        value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+        aria-required="true"
+        {% if form.errors contains 'email' %}
+          aria-invalid="true"
+          aria-describedby="ContactForm-email-error"
+        {% endif %}
+        placeholder="xxxxxx@xxx.com"
+      >
+      {%- if form.errors contains 'email' -%}
+        <div id="ContactForm-email-error" class="form-text text-danger">
+          {{ form.errors.translated_fields.email | capitalize }}
+          {{ form.errors.messages.email }}.
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="ContactForm-body"> Content </label>
+      <textarea
+        rows="4"
+        id="ContactForm-body"
+        class="form-control"
+        name="contact[body]"
+      >
+              {{ form.body }}
+            </textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Submit</button>
+  {%- endform -%}
+</section>

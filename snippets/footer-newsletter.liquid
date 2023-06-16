@@ -1,0 +1,29 @@
+<section>
+  <h3 for="Email">Newsletter</h3>
+
+  {% form 'customer' %}
+    {{ form.errors | default_errors }}
+    {% if form.posted_successfully? %}
+      <p>Congradulation!! You have subscribed to our newsletter</p>
+    {% else %}
+      <div class="mt-3">
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="input-group">
+          <input
+            class="form-control"
+            type="email"
+            name="contact[email]"
+            id="NewsletterEmail"
+            value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
+            placeholder="Email Address"
+            autocorrect="off"
+            autocapitalize="off"
+          >
+          <button class="btn btn-primary" type="submit" name="commit" id="Subscribe">
+            <span>Subscribe</span>
+          </button>
+        </div>
+      </div>
+    {% endif %}
+  {% endform %}
+</section>
