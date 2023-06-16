@@ -3,6 +3,7 @@
     "main": {
       "type": "account-register",
       "settings": {
+        "background_image": "shopify:\/\/shop_images\/pexels-anni-roenkae-2983141.jpg"
       }
     }
   },
