@@ -6,12 +6,13 @@
   {%- if background_image -%}
     <div class="row m-0">
       <div class="col-12 col-md-6 fill d-none d-md-flex">
-        <img class="img-fluid" src="{{ background_image | img_url }}" alt="{{ background_image.alt }}">
+        <img class="img-fluid" src="{{ background_image | img_url: "1200x1200" }}" alt="{{ background_image.alt }}">
       </div>
       <div class="col-12 col-md-6 container px-auto p-3 p-md-5">
   {%- endif -%}
       <h1 class="mb-3 text-center">Register</h1>
-      {%- form 'create_customer' -%}
+      <div class="container-sm">
+      {%- form 'create_customer', class: 'max-w-50' -%}
         <div class="mb-3">
           <label for="RegisterForm-FirstName" class="form-label">First Name</label>
           <input
@@ -130,6 +131,7 @@
           Already have an account? <a class="link pe-auto" href="{{ routes.account_login_url }}">Login here</a>
         </p>
       {%- endform -%}
+      </div>
       {%- if background_image -%}
       </div>
     </div>
