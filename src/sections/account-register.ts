@@ -1,7 +1,6 @@
 import { createApp, ref, watch } from "vue/dist/vue.esm-bundler";
 
 import { appConfig } from "../config";
-import DarkMode from "@/plugins/DarkMode";
 
 export default function accountRegisterFormApp() {
 	return createApp({
@@ -27,7 +26,5 @@ export default function accountRegisterFormApp() {
 				hasCheckedToS,
 			};
 		},
-	})
-		.use(DarkMode)
-		.mount("#account-register-form");
+	}).mount("#account-register-form");
 }
