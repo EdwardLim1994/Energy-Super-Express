@@ -39,32 +39,28 @@
       </nav>
       <div id="product-detail-images-carousel" class="carousel slide shadow rounded">
         <div class="carousel-indicators rounded-bottom mb-5">
-          {% assign count = 0 %}
           {% for image in product.images %}
             <button
               type="button"
               data-bs-target="#product-detail-images-carousel"
-              data-bs-slide-to="{{ count }}"
-              aria-label="Slide {{ count }}"
-              {% if count == 0 %}
+              data-bs-slide-to="{{ forloop.index }}"
+              aria-label="Slide {{ forloop.index }}"
+              {% if forloop.index == 0 %}
                 class="active"
               {% endif %}
-              {% if count == 0 %}
+              {% if forloop.index == 0 %}
                 aria-current="true"
               {% endif %}
             >
               {{ image | image_url: width: 80, height: 50 | image_tag: class: 'd-block w-100' }}
             </button>
-            {% assign count = count | plus: 1 %}
           {% endfor %}
         </div>
         <div class="carousel-inner rounded">
-          {% assign count = 1 %}
           {% for image in product.images %}
-            <div class="carousel-item {% if count == 1 %}active{% endif %}">
+            <div class="carousel-item {% if forloop.index == 0 %}active{% endif %}">
               {{ image | image_url: width: 800 | image_tag: class: 'd-block w-100' }}
             </div>
-            {% assign count = count | plus: 1 %}
           {% endfor %}
         </div>
         <button
