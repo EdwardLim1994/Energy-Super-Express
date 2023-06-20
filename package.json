@@ -16,6 +16,7 @@
 		"vue": "^3.3.4"
 	},
 	"devDependencies": {
+		"@types/bootstrap": "^5.2.6",
 		"@types/lodash": "^4.14.195",
 		"@vitejs/plugin-vue": "^4.0.0",
 		"adastra-cli": "latest",
