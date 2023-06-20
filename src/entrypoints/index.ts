@@ -1,5 +1,5 @@
 import { createApp, ref } from "vue/dist/vue.esm-bundler";
-import "bootstrap/dist/js/bootstrap.bundle.js";
+import * as bootstrap from "bootstrap";
 import { appConfig } from "@/config";
 
 import headerApp from "@/sections/header";
@@ -8,19 +8,23 @@ import accountLoginFormApp from "@/sections/account-login";
 import footerApp from "@/sections/footer";
 import productDetailApp from "@/sections/product-detail";
 
-headerApp();
-footerApp();
-accountRegisterFormApp();
-accountLoginFormApp();
-productDetailApp();
+(function () {
+	bootstrap;
 
-createApp({
-	...appConfig,
-	setup() {
-		const count = ref(0);
+	headerApp();
+	footerApp();
+	accountRegisterFormApp();
+	accountLoginFormApp();
+	productDetailApp();
 
-		return {
-			count,
-		};
-	},
-}).mount("#hello-world");
+	createApp({
+		...appConfig,
+		setup() {
+			const count = ref(0);
+
+			return {
+				count,
+			};
+		},
+	}).mount("#hello-world");
+})();
