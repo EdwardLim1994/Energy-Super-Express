@@ -1,5 +1,5 @@
 import { createApp, ref } from "vue/dist/vue.esm-bundler";
-
+import boostrap from "bootstrap/dist/js/bootstrap.bundle.js";
 import { appConfig } from "@/config";
 
 import headerApp from "@/sections/header";
