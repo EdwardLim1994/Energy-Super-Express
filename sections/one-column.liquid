@@ -5,12 +5,19 @@
         {% render block %}
       {%- when 'heading_block' -%}
         {% assign tag = block.settings.heading_tag %}
-        <{{ tag }} class="{% if block.settings.heading_capitalize %}text-capitalize{% endif %} {% if block.settings.heading_uppercase %}text-uppercase{% endif %}">
+        <{{ tag }} class="mt-3 {% if block.settings.heading_capitalize %}text-capitalize{% endif %} {% if block.settings.heading_uppercase %}text-uppercase{% endif %}">
           {{- block.settings.heading_text -}}
         </{{ tag }}>
       {%- when 'content_block' -%}
-        {{ block.settings.content }}
+        <div class="mb-3">
+          {{ block.settings.content }}
+        </div>
       {%- when 'image_block' -%}
+        {{
+          block.settings.image
+          | image_url: width: 1800, height: 800
+          | image_tag: class: 'd-block img-fluid object-fit-cover'
+        }}
     {%- endcase -%}
   {% endfor %}
 </section>
