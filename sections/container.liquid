@@ -1,0 +1,116 @@
+{% assign column = '' %}
+{% case section.settings.column_count %}
+  {% when '2' %}
+    {% assign column = 'col-12 col-md-6' %}
+  {% when '3' %}
+    {% assign column = 'col-12 col-md-4' %}
+{% endcase %}
+<section class="w-100 {% unless section.settings.no_gutter %}container-fluid{% else %}container{% endunless %}">
+  {% if section.settings.column_count != '1' %}
+    <div class="row">
+  {% endif %}
+  {% for block in section.blocks %}
+    {% if column != '' %}
+      <div class="{{ column }}">
+    {% endif %}
+    {%- case block.type -%}
+      {%- when '@app' -%}
+        {% render block %}
+      {%- when 'content_block' -%}
+        <div class="p-3">
+          {{ block.settings.content }}
+        </div>
+      {%- when 'image_block' -%}
+        {{ block.settings.image | image_url: width: 1800 | image_tag: class: 'd-block img-fluid object-fit-cover' }}
+    {%- endcase -%}
+    {% if column != '' %}
+      </div>
+    {% endif %}
+  {% endfor %}
+  {% if section.settings.column_count != '1' %}
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Container",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "content_block",
+      "name": "Text Content",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Write your content here</p>"
+        }
+      ]
+    },
+    {
+      "type": "image_block",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "label": "Image",
+          "id": "image"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "no_gutter",
+      "label": "No Gutter?",
+      "default": false
+    },
+    {
+      "type": "radio",
+      "id": "column_count",
+      "label": "How many columns per row?",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 column"
+        },
+        {
+          "value": "2",
+          "label": "2 columns"
+        },
+        {
+          "value": "3",
+          "label": "3 columns"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "radio",
+      "id": "content_align",
+      "label": "Content alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "centered",
+          "label": "Centered"
+        }
+      ],
+      "default": "left"
+    }
+  ]
+}
+{% endschema %}
