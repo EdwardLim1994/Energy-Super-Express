@@ -1,0 +1,146 @@
+{% style %}
+  .drk:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: black;
+    opacity: 0.6;
+    z-index: 1;
+  }
+{% endstyle %}
+
+{% assign min = 1 %}
+{% assign max = 100 %}
+{% assign diff = max | minus: min %}
+{% assign randomNumber = 'now' | date: '%N' | modulo: diff | plus: min %}
+
+<div
+  id="hero-banner-{{ randomNumber }}"
+  class="carousel slide"
+  {% if section.settings.autoplay %}
+    data-bs-ride="carousel"
+  {% endif %}
+>
+  {% if section.settings.show_indicator %}
+    <div class="carousel-indicators">
+      {% for block in section.blocks %}
+        <button
+          type="button"
+          data-bs-target="#hero-banner-{{ randomNumber }}"
+          data-bs-slide-to="{{ forloop.index | minus: 1 }}"
+          aria-label="Hero Slide {{ forloop.index }}"
+          {%- if forloop.index == 1 -%}
+            class="active"
+            aria-current="true"
+          {%- endif -%}
+        ></button>
+      {% endfor %}
+    </div>
+  {% endif %}
+  <div class="carousel-inner drk">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {%- when '@app' -%}
+          {% render block %}
+        {% when 'slide' %}
+          <div class="carousel-item relative {% if forloop.index == 1 %}active{% endif %}">
+            {{
+              block.settings.background_image
+              | image_url: width: 1800, height: 800
+              | image_tag: class: 'd-block img-fluid object-fit-cover'
+            }}
+            <div class="carousel-caption z-2">
+              <h3 class="text-white">{{ block.settings.heading }}</h3>
+              <p class="text-white">{{ block.settings.subheading }}</p>
+              {% if block.settings.call_to_action %}
+                <a href="{{ block.settings.call_to_action }}" class="btn btn-primary">
+                  {{ block.settings.call_to_action_text }}
+                </a>
+              {% endif %}
+            </div>
+          </div>
+      {% endcase %}
+    {% endfor %}
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#hero-banner-{{ randomNumber }}"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#hero-banner-{{ randomNumber }}"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "slide",
+      "name": "Carousel Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "label": "Background Image",
+          "id": "background_image"
+        },
+        {
+          "type": "text",
+          "label": "Heading",
+          "id": "heading",
+          "default": "This is a heading"
+        },
+        {
+          "type": "text",
+          "label": "Subheading",
+          "id": "subheading",
+          "default": "This is a subheading"
+        },
+        {
+          "type": "url",
+          "id": "call_to_action",
+          "label": "Call to Action Button's URL"
+        },
+        {
+          "type": "text",
+          "id": "call_to_action_text",
+          "label": "Call to Action Button's Text",
+          "default": "Go to here"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_indicator",
+      "label": "Show Carousel's indicator?",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay Carousel?",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
