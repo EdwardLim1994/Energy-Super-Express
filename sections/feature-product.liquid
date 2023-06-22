@@ -21,7 +21,7 @@
 <section class="my-2 {% if section.settings.has_gutter %}container{% else %}container-fluid{% endif %}">
   <h2 class="">{{ section.settings.title }}</h2>
   {% if count > 1 %}
-    <div id="feature-product-carousel" class="carousel slide">
+    <div id="feature-product-carousel" class="carousel slide d-none d-md-block">
       {% if total_page > 1 %}
         <div class="carousel-indicators">
           {% for page in total_page %}
@@ -88,6 +88,92 @@
           {% if current_index == total_card_per_page %}
             {% assign current_index = 1 %}
           {% endif %}
+        {% endfor %}
+      </div>
+      {% if total_page > 1 %}
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#feature-product-carousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#feature-product-carousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      {% endif %}
+    </div>
+    <div id="feature-product-carousel-mobile" class="carousel slide d-block d-md-none">
+      {% if total_page > 1 %}
+        <div class="carousel-indicators">
+          {% for page in products %}
+            <button
+              type="button"
+              data-bs-target="#feature-product-carousel"
+              data-bs-slide-to="{{ forloop.index | minus: 1 }}"
+              aria-label="Slide {{ forloop.index | minus: 1 }}"
+              {% if forloop.index == 1 %}
+                class="active"
+                aria-current="true"
+              {% endif %}
+            ></button>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <div class="carousel-inner">
+        {% for product in products %}
+          <div class="carousel-item row {% if forloop.index == 1 %}active{% endif %}">
+            <div class="card p-0 {{ column }}">
+              {% if section.settings.show_slideshow %}
+                <div
+                  id="feature-product-{{ forloop.index }}"
+                  class="carousel slide card-img-top"
+                  data-bs-ride="carousel"
+                >
+                  <div class="carousel-indicators">
+                    {% for image in product.images %}
+                      <button
+                        type="button"
+                        data-bs-target="#feature-product-{{ forloop.index }}"
+                        data-bs-slide-to="{{ forloop.index | minus: 1 }}"
+                        aria-label="Slide {{ forloop.index | minus: 1 }}"
+                        {% if forloop.index == 1 %}
+                          class="active"
+                          aria-current="true"
+                        {% endif %}
+                      ></button>
+                    {% endfor %}
+                  </div>
+                  <div class="carousel-inner ">
+                    {% for image in product.images %}
+                      <div
+                        class="carousel-item {% if forloop.index == 1 %}active{% endif %}"
+                      >
+                        {{ image | image_url: width: 400 | image_tag: class: 'd-block w-100' }}
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% else %}
+                {{ product.featured_image | image_url: width: 400 | image_tag: class: 'card-img-top' }}
+              {% endif %}
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <div class="d-flex column-gap-1 align-items-lg-center">
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <p class="mb-0">4.9</p>
+                </div>
+              </div>
+            </div>
+          </div>
         {% endfor %}
       </div>
       {% if total_page > 1 %}
