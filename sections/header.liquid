@@ -69,10 +69,14 @@
             </li>
           {%- endif -%}
           <li class="nav-item">
-            <a href="/cart" class="nav-link align-items-center d-flex column-gap-3">
+            <button
+              class="nav-link  align-items-center d-flex column-gap-3"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#mini-cart"
+            >
               <i class="bi bi-bag-fill"></i>
               <p class="mb-0">Cart</p>
-            </a>
+            </button>
           </li>
 
           {%- if customer -%}
@@ -117,7 +121,7 @@
           </li>
         {%- endif -%}
         <li class="nav-item">
-          <button class="nav-link">
+          <button class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#mini-cart">
             <i class="bi bi-bag-fill"></i>
           </button>
         </li>
@@ -157,6 +161,74 @@
       </ul>
     </div>
   </nav>
+  <div
+    class="offcanvas offcanvas-end"
+    data-bs-backdrop="static"
+    tabindex="-1"
+    id="mini-cart"
+    aria-labelledby="mini-cart"
+  >
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">Your Cart</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div v-if="isFetching" class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="h-100" v-else>
+        <form
+          v-if="cart"
+          action="{{ routes.cart_url }}"
+          id="mini-cart-form"
+          class="h-100 w-100 d-flex flex-column justify-content-between"
+          method="post"
+        >
+          <div class="row d-flex flex-column row-gap-5">
+            <div class="col-12 d-flex column-gap-2" v-for="item in cart.items" :key="`cart-item-${item.id}`">
+              <img
+                class="img-fluid w-25"
+                :src="item.featured_image.url"
+                :alt="item.featured_image.alt"
+              >
+              <div class="w-75 d-flex flex-column row-gap-1">
+                <p class="text-truncate mb-0">[[item.product_title]]</p>
+                <p class="mb-0 opacity-50">SKU: [[item.sku]]</p>
+                <p class="fs-4 mb-0">{{ cart.currency.symbol }}[[(item.final_price/100).toFixed(2)]]</p>
+                <div class="d-flex justify-content-between mt-3">
+                  <div class="input-group w-50">
+                    <button class="btn btn-outline-secondary w-25" type="button">-</button>
+                    <input
+                      type="number"
+                      min="1"
+                      :value="item.quantity"
+                      class="form-control text-center w-50"
+                      aria-label="Cart item quantity"
+                    >
+                    <button class="btn btn-outline-secondary w-25" type="button">+</button>
+                  </div>
+                  <button class="btn btn-outline-danger "><i class="bi bi-trash"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bottom-0">
+            <hr>
+            <div class="d-flex justify-content-between">
+              <h5>Subtotal</h5>
+              <h5>
+                {{ cart.currency.symbol }}
+                [[(cart.items_subtotal_price / 100).toFixed(2) ]]
+              </h5>
+            </div>
+            <hr>
+            <input class="btn btn-primary w-100" type="submit" name="checkout" value="Checkout">
+          </div>
+        </form>
+        <p v-else>Your cart is empty</p>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% schema %}
