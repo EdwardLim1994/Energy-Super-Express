@@ -166,11 +166,27 @@
                 {{ product.featured_image | image_url: width: 400 | image_tag: class: 'card-img-top' }}
               {% endif %}
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <div class="d-flex column-gap-1 align-items-lg-center">
-                  <i class="bi bi-star-fill text-warning"></i>
-                  <p class="mb-0">4.9</p>
-                </div>
+                <h5 class="card-title">{{ product.title }}</h5>
+                <p>
+                  {%- if product.price_max != product.price_min -%}
+                    {{ cart.currency.symbol -}}
+                    {{- product.price_min | divided_by: 100.00 }} - {{ cart.currency.symbol -}}
+                    {{- product.price_max | divided_by: 100.00 -}}
+
+                  {% else %}
+                    {{ cart.currency.symbol -}}
+                    {{- product.price_min | divided_by: 100.00 }}
+                  {%- endif -%}
+                </p>
+                {% comment %}
+                  <div class="d-flex column-gap-1 align-items-lg-center">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <p class="mb-0">4.9</p>
+                  </div>
+                {% endcomment %}
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary w-100" href="products/{{product.handle}}">View</a>
               </div>
             </div>
           </div>
@@ -231,11 +247,27 @@
           {{ product.featured_image | image_url: width: 400 | image_tag: class: 'card-img-top' }}
         {% endif %}
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <div class="d-flex column-gap-1 align-items-lg-center">
-            <i class="bi bi-star-fill text-warning"></i>
-            <p class="mb-0">4.9</p>
-          </div>
+          <h5 class="card-title">{{ product.title }}</h5>
+          <p>
+            {%- if product.price_max != product.price_min -%}
+              {{ cart.currency.symbol -}}
+              {{- product.price_min | divided_by: 100.00 }} - {{ cart.currency.symbol -}}
+              {{- product.price_max | divided_by: 100.00 -}}
+
+            {% else %}
+              {{ cart.currency.symbol -}}
+              {{- product.price_min | divided_by: 100.00 }}
+            {%- endif -%}
+          </p>
+          {% comment %}
+            <div class="d-flex column-gap-1 align-items-lg-center">
+              <i class="bi bi-star-fill text-warning"></i>
+              <p class="mb-0">4.9</p>
+            </div>
+          {% endcomment %}
+        </div>
+        <div class="card-footer">
+          <a class="btn btn-primary w-100" href="products/{{product.handle}}">View</a>
         </div>
       </div>
     </div>
