@@ -1,4 +1,4 @@
-import { createApp, reactive, ref } from "vue/dist/vue.esm-bundler";
+import { createApp, reactive, ref, watch } from "vue/dist/vue.esm-bundler";
 
 import { appConfig } from "../config";
 import { breakpoint } from "@/helper";
@@ -29,7 +29,22 @@ export default function productDetailApp() {
 				chosenVariant.max = qty;
 			}
 
-			return { isDesktop, chosenVariant, selectVariant, qty };
+			function incrementQty() {
+				qty.value = qty.value + 1;
+			}
+
+			function decrementQty() {
+				qty.value = qty.value - 1;
+			}
+
+			return {
+				isDesktop,
+				chosenVariant,
+				qty,
+				selectVariant,
+				incrementQty,
+				decrementQty,
+			};
 		},
 	})
 		.use(Cart)

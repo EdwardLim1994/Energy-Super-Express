@@ -144,7 +144,7 @@
     <div class="d-none d-lg-block col col-md-4 pe-0" id="product-detail">
       <div class="product-detail--sticky-position sticky-top">
         <teleport :disabled="isDesktop" to="#product-detail-sidebar">
-          <form @submit.prevent="addToCart(chosenVariant.id, qty)">
+          <form @submit.prevent="addCartItem(chosenVariant.id, qty)">
             <div class="p-3 w-100  bg-body-tertiary rounded shadow ">
               <div class="d-flex flex-column row-gap-3 justify-content-center p-3 w-100 ">
                 <div class="d-flex flex-column row-gap-2">
@@ -253,7 +253,14 @@
                 <div class="mb-2 d-flex flex-column" v-if="chosenVariant.max">
                   <label for="product-qty" class="form-label">Qty:</label>
                   <div class="input-group product-detail--width">
-                    <button class="btn btn-outline-secondary w-25" type="button">-</button>
+                    <button
+                      :disabled="qty <= 1"
+                      class="btn btn-outline-secondary w-25"
+                      type="button"
+                      @click.native="decrementQty"
+                    >
+                      -
+                    </button>
                     <input
                       id="product-qty"
                       type="number"
@@ -264,7 +271,14 @@
                       aria-label="Cart item quantity"
                       name="quantity"
                     >
-                    <button class="btn btn-outline-secondary w-25" type="button">+</button>
+                    <button
+                      :disabled="chosenVariant.max != null && qty >= chosenVariant.max "
+                      class="btn btn-outline-secondary w-25"
+                      type="button"
+                      @click.native="incrementQty"
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
                 <input hidden name="id" :value="chosenVariant.id">
