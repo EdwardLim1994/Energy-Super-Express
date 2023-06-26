@@ -43,12 +43,12 @@
             <button
               type="button"
               data-bs-target="#product-detail-images-carousel"
-              data-bs-slide-to="{{ forloop.index }}"
-              aria-label="Slide {{ forloop.index }}"
-              {% if forloop.index == 0 %}
+              data-bs-slide-to="{{ forloop.index | minus: 1 }}"
+              aria-label="Slide {{ forloop.index | minus: 1 }}"
+              {% if forloop.index == 1 %}
                 class="active"
               {% endif %}
-              {% if forloop.index == 0 %}
+              {% if forloop.index == 1 %}
                 aria-current="true"
               {% endif %}
             >
@@ -58,7 +58,7 @@
         </div>
         <div class="carousel-inner rounded">
           {% for image in product.images %}
-            <div class="carousel-item {% if forloop.index == 0 %}active{% endif %}">
+            <div class="carousel-item {% if forloop.index == 1  %}active{% endif %}">
               {{ image | image_url: width: 800 | image_tag: class: 'd-block w-100' }}
             </div>
           {% endfor %}
@@ -144,113 +144,157 @@
     <div class="d-none d-lg-block col col-md-4 pe-0" id="product-detail">
       <div class="product-detail--sticky-position sticky-top">
         <teleport :disabled="isDesktop" to="#product-detail-sidebar">
-          <div class="p-3 w-100  bg-body-tertiary rounded shadow ">
-            <div class="d-flex flex-column row-gap-3 justify-content-center p-3 w-100 ">
-              <div class="d-flex flex-column row-gap-2">
+          <form @submit.prevent="addCartItem(chosenVariant.id, qty)">
+            <div class="p-3 w-100  bg-body-tertiary rounded shadow ">
+              <div class="d-flex flex-column row-gap-3 justify-content-center p-3 w-100 ">
                 <div class="d-flex flex-column row-gap-2">
-                  <h1 class="fs-3 mb-0 fw-light">{{ product.title }}</h1>
-                </div>
-                <div class="d-flex flex-column justify-content-center row-gap-2 mt-1 ">
-                  <h5 class="fs-4 mb-0 fw-bold pe-2 pb-lg-1 pb-xl-0">
-                    [[chosenVariant.price ? `{{ cart.currency.symbol -}}
-                    ${chosenVariant.price?.toFixed(2)}` :
-                    {%- if product.price_max != product.price_min -%}
-                      '{{ cart.currency.symbol -}}
-                      {{- product.price_min | divided_by: 100.00 }} - {{ cart.currency.symbol -}}
-                      {{- product.price_max | divided_by: 100.00 -}}
-                      '
-                    {% else %}
-                      '{{ cart.currency.symbol -}}
-                      {{- product.price_min | divided_by: 100.00 }}'
-                    {%- endif -%}
-                    ]]
-                  </h5>
-                  {% comment %}
-                    <div class="product-detail--display align-items-center column-gap-2">
-                      <div class="d-flex column-gap-1 align-items-lg-center">
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <p class="mb-0">4.9</p>
+                  <div class="d-flex flex-column row-gap-2">
+                    <h1 class="fs-3 mb-0 fw-light">{{ product.title }}</h1>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center row-gap-2 mt-1 ">
+                    <h5 class="fs-4 mb-0 fw-bold pe-2 pb-lg-1 pb-xl-0 d-flex column-gap-2">
+                      <span
+                        class="ml-2 "
+                        :class="{'text-decoration-line-through fs-5': chosenVariant.compare_at_price}"
+                        v-if="chosenVariant.compare_at_price"
+                        >[[`{{ cart.currency.symbol -}}
+                        ${chosenVariant.compare_at_price?.toFixed(2)}`]]</span
+                      >
+                      <span
+                        v-if="chosenVariant.price"
+                        class="fs-3"
+                        >[[ `{{ cart.currency.symbol -}}
+                        ${chosenVariant.price?.toFixed(2)}` ]]</span
+                      >
+                      <span v-else
+                        >[[
+                        {%- if product.price_max != product.price_min -%}
+                          '{{ cart.currency.symbol -}}
+                          {{- product.price_min | divided_by: 100.00 }} - {{ cart.currency.symbol -}}
+                          {{- product.price_max | divided_by: 100.00 -}}
+                          '
+                        {% else %}
+                          '{{ cart.currency.symbol -}}
+                          {{- product.price_min | divided_by: 100.00 }}'
+                        {%- endif -%}
+                        ]]</span
+                      >
+                    </h5>
+                    {% comment %}
+                      <div class="product-detail--display align-items-center column-gap-2">
+                        <div class="d-flex column-gap-1 align-items-lg-center">
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <p class="mb-0">4.9</p>
+                        </div>
+                        <p class="mb-0">(45 reviews)</p>
                       </div>
-                      <p class="mb-0">(45 reviews)</p>
-                    </div>
-                  {% endcomment %}
+                    {% endcomment %}
+                  </div>
                 </div>
-              </div>
-              <hr class="border border-dark-subtle border-1 opacity-75 w-100 m-0">
-              <div class="mb-2 d-flex flex-column w-100">
-                <input name="id" hidden v-model="chosenVariant.id">
-                <label for="product-variants" class="form-label">Variants:</label>
-                <div class="dropdown w-100">
-                  <button
-                    id="product-variants"
-                    class="btn btn-outline-secondary d-flex justify-content-between align-items-center dropdown-toggle w-100"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    [[chosenVariant.title ?? 'Select a variant']]
-                  </button>
+                <hr class="border border-dark-subtle border-1 opacity-75 w-100 m-0">
+                <div class="mb-2 d-flex flex-column w-100">
+                  <input name="id" hidden v-model="chosenVariant.id">
+                  <label for="product-variants" class="form-label">Variants:</label>
+                  <div class="dropdown w-100">
+                    <button
+                      id="product-variants"
+                      class="btn btn-outline-secondary d-flex justify-content-between align-items-center dropdown-toggle w-100"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      [[chosenVariant.title ?? 'Select a variant']]
+                    </button>
 
-                  <ul class="dropdown-menu w-100">
-                    {% for variant in product.variants %}
-                      <li role="button">
-                        <a
-                          class="dropdown-item d-flex align-items-center column-gap-2 "
-                          :class="
-                            {
-                              'active': chosenVariant.id == '{{ variant.id }}'
-                            }
-                          "
-                          @click="selectVariant({{ variant.id }}, '{{ variant.title }}', {{ variant.price | divided_by: 100.00 }}, {{ variant.inventory_quantity }})"
-                        >
-                          {{ variant.image | image_url: width: 100 | image_tag: classes: 'd-block rounded' }}
-                          <div class="d-flex flex-column row-gap-1 user-select-none">
-                            <p class="m-0">
-                              {{ variant.title }}
-                              {% unless variant.available == true %}
-                                - sold out
-                              {% else %}
-                                for {{ cart.currency.symbol -}}
-                                {{- variant.price | divided_by: 100.00 }}
-                              {% endunless %}
-                            </p>
-                            <p class="opacity-50 m-0">SKU: {{ variant.sku }}</p>
-                          </div>
-                        </a>
-                      </li>
-                    {% endfor %}
-                  </ul>
+                    <ul class="dropdown-menu w-100">
+                      {% for variant in product.variants %}
+                        <li role="button">
+                          <a
+                            class="dropdown-item d-flex align-items-center column-gap-2 "
+                            :class="
+                              {
+                                'active': chosenVariant.id == {{ variant.id }}
+                              }
+                            "
+                            {% if variant.available == true %}
+                              @click="selectVariant({{ variant.id }}, '{{ variant.title }}', {{ variant.price | divided_by: 100.00 }}, {{ variant.compare_at_price | divided_by: 100.00 }}, {{ variant.inventory_quantity }})"
+                            {% endif %}
+                          >
+                            {{ variant.image | image_url: width: 100 | image_tag: classes: 'd-block rounded' }}
+                            <div class="d-flex flex-column row-gap-1 user-select-none">
+                              <p class="m-0">
+                                {{ variant.title }}
+                                {% unless variant.available == true %}
+                                  - sold out
+                                  {% comment %}
+                                    {% else %}
+                                    for
+
+                                    {% if variant.compare_at_price %}
+                                      {{ cart.currency.symbol -}}
+                                      {{- variant.price | divided_by: 100.00 }}
+                                      {{ cart.currency.symbol -}}
+                                      {{- variant.compare_at_price | divided_by: 100.00 }}
+                                    {% else %}
+                                      {{ cart.currency.symbol -}}
+                                      {{- variant.price | divided_by: 100.00 }}
+                                    {% endif %}
+                                  {% endcomment %}
+                                {% endunless %}
+                              </p>
+                              <p class="opacity-50 m-0">SKU: {{ variant.sku }}</p>
+                            </div>
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-              <div class="mb-2 d-flex flex-column" v-if="chosenVariant.max">
-                <label for="product-qty" class="form-label">Qty:</label>
-                <div class="input-group product-detail--width">
-                  <button class="btn btn-outline-secondary w-25" type="button">-</button>
-                  <input
-                    id="product-qty"
-                    type="number"
-                    min="1"
-                    :max="chosenVariant.max ?? 1"
-                    value="1"
-                    class="form-control text-center w-50"
-                    placeholder=""
-                    aria-label="Cart item quantity"
-                  >
-                  <button class="btn btn-outline-secondary w-25" type="button">+</button>
+                <div class="mb-2 d-flex flex-column" v-if="chosenVariant.max">
+                  <label for="product-qty" class="form-label">Qty:</label>
+                  <div class="input-group product-detail--width">
+                    <button
+                      :disabled="qty <= 1"
+                      class="btn btn-outline-secondary w-25"
+                      type="button"
+                      @click.native="decrementQty"
+                    >
+                      -
+                    </button>
+                    <input
+                      id="product-qty"
+                      type="number"
+                      min="1"
+                      :max="chosenVariant.max ?? 1"
+                      v-model="qty"
+                      class="form-control text-center w-50"
+                      aria-label="Cart item quantity"
+                      name="quantity"
+                    >
+                    <button
+                      :disabled="chosenVariant.max != null && qty >= chosenVariant.max "
+                      class="btn btn-outline-secondary w-25"
+                      type="button"
+                      @click.native="incrementQty"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
+                <input hidden name="id" :value="chosenVariant.id">
+                <button
+                  :disabled="chosenVariant.id == null"
+                  type="submit"
+                  name="add"
+                  id="add"
+                  value="Add to Cart"
+                  class="btn btn-primary btn-lg w-100"
+                >
+                  Add to Cart
+                </button>
               </div>
-              <button
-                :disabled="chosenVariant.id == null"
-                type="submit"
-                name="add"
-                id="add"
-                value="Add to Cart"
-                class="btn btn-primary btn-lg w-100"
-              >
-                Add to Cart
-              </button>
             </div>
-          </div>
+          </form>
         </teleport>
       </div>
     </div>

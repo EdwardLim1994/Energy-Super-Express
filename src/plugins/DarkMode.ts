@@ -1,4 +1,3 @@
-import { ref, onBeforeMount } from "vue/dist/vue.esm-bundler";
 import { getCookie, setCookie } from "typescript-cookie";
 
 export default {
