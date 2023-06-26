@@ -2,6 +2,7 @@ import { createApp, ref, watch } from "vue/dist/vue.esm-bundler";
 
 import { appConfig } from "../config";
 import DarkMode from "@/plugins/DarkMode";
+import Cart from "@/plugins/Cart";
 
 export default function headerApp() {
 	return createApp({
@@ -31,5 +32,6 @@ export default function headerApp() {
 		},
 	})
 		.use(DarkMode)
+		.use(Cart)
 		.mount("#section-header");
 }

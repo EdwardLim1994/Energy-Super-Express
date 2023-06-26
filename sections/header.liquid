@@ -178,18 +178,19 @@
       </div>
       <div class="h-100" v-else>
         <form
-          v-if="cart"
+          v-if="!isItemsEmpty"
           action="{{ routes.cart_url }}"
           id="mini-cart-form"
           class="h-100 w-100 d-flex flex-column justify-content-between"
           method="post"
         >
           <div class="row d-flex flex-column row-gap-5">
-            <div class="col-12 d-flex column-gap-2" v-for="item in cart.items" :key="`cart-item-${item.id}`">
+            <div class="col-12 d-flex column-gap-2" v-for="(item, index) in cart.items" :key="`cart-item-${item.id}`">
               <img
                 class="img-fluid w-25"
                 :src="item.featured_image.url"
                 :alt="item.featured_image.alt"
+                loading="lazy"
               >
               <div class="w-75 d-flex flex-column row-gap-1">
                 <p class="text-truncate mb-0">[[item.product_title]]</p>
@@ -197,17 +198,32 @@
                 <p class="fs-4 mb-0">{{ cart.currency.symbol }}[[(item.final_price/100).toFixed(2)]]</p>
                 <div class="d-flex justify-content-between mt-3">
                   <div class="input-group w-50">
-                    <button class="btn btn-outline-secondary w-25" type="button">-</button>
+                    <button
+                      class="btn btn-outline-secondary w-25"
+                      type="button"
+                      @click="(e) => updateCartItem(e, ++index, --item.quantity)"
+                    >
+                      -
+                    </button>
                     <input
                       type="number"
                       min="1"
                       :value="item.quantity"
                       class="form-control text-center w-50"
                       aria-label="Cart item quantity"
+                      @change="(e) => updateCartItem(e, ++index, e.target.value)"
                     >
-                    <button class="btn btn-outline-secondary w-25" type="button">+</button>
+                    <button
+                      class="btn btn-outline-secondary w-25"
+                      type="button"
+                      @click="(e) => updateCartItem(e, ++index, ++item.quantity)"
+                    >
+                      +
+                    </button>
                   </div>
-                  <button class="btn btn-outline-danger "><i class="bi bi-trash"></i></button>
+                  <button type="button" class="btn btn-outline-danger" @click="(e) => removeCartItem(e, ++index)">
+                    <i class="bi bi-trash"></i>
+                  </button>
                 </div>
               </div>
             </div>
