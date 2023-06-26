@@ -1,11 +1,36 @@
 {
-  "sections": {
-    "main": {
-      "type": "hello-world",
-      "settings": {
-        "heading": "Welcome to Adastra ✨ with Vue."
-      }
-    }
-  },
-  "order": ["main"]
+	"sections": {
+		"hero_banner": {
+			"type": "hero-banner"
+		},
+		"one_column": {
+			"type": "container",
+			"settings": {
+				"column_count": "1"
+			},
+			"blocks": {
+				"content": {
+					"type": "content_block"
+				}
+			}
+		},
+		"two_columns": {
+			"type": "container",
+			"settings": {
+				"column_count": "2"
+			},
+			"blocks": {
+				"image": {
+					"type": "image_block"
+				},
+				"content": {
+					"type": "content_block"
+				}
+			}
+		},
+		"feature_product": {
+			"type": "feature-product"
+		}
+	},
+	"order": ["hero_banner", "one_column", "two_columns", "feature_product"]
 }
