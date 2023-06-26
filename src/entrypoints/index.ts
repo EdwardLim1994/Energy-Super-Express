@@ -16,15 +16,4 @@ import productDetailApp from "@/sections/product-detail";
 	accountRegisterFormApp();
 	accountLoginFormApp();
 	productDetailApp();
-
-	createApp({
-		...appConfig,
-		setup() {
-			const count = ref(0);
-
-			return {
-				count,
-			};
-		},
-	}).mount("#hello-world");
 })();
