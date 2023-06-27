@@ -14,46 +14,54 @@
       <li class="breadcrumb-item active" aria-current="page">My Orders</li>
     </ol>
   </nav>
-  <h1>My Orders</h1>
-  <div class="table-responsive-md">
-    <table class="table align-middle table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Date</th>
-          <th scope="col">Total</th>
-          <th scope="col">Payment Status</th>
-          <th scope="col">Fullfillment Status</th>
-          <th scope="col">Items</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for order in customer.orders %}
+
+  {% if customer.orders == empty %}
+    <div class="d-flex flex-column align-items-center justify-content-center">
+      <h2 class="p-3 d-flex text-capitalize text-center">no order yet</h2>
+      <a class="btn btn-primary" href="/home">Go Shopping</a>
+    </div>
+  {% else %}
+    <h1>My Orders</h1>
+    <div class="table-responsive-md">
+      <table class="table align-middle table-hover">
+        <thead>
           <tr>
-            <th scope="row">
-              <a href="{{ order.order_status_url }}">{{ order.name }}</a>
-            </th>
-            <td>{{ order.created_at | date: '%b %d, %Y' }}</td>
-            <td>
-              {{ cart.currency.symbol -}}
-              {{- order.total_price | divided_by: 100.00 }}
-            </td>
-            <td>
-              <div class="rounded-pill btn btn-primary px-4 text-center text-capitalize">
-                {{ order.financial_status }}
-              </div>
-            </td>
-            <td>
-              <div class="rounded-pill btn btn-warning px-4 text-center text-capitalize">
-                {{ order.fulfillment_status }}
-              </div>
-            </td>
-            <td>{{ order.item_count }}</td>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Total</th>
+            <th scope="col">Payment Status</th>
+            <th scope="col">Fullfillment Status</th>
+            <th scope="col">Items</th>
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+          {% for order in customer.orders %}
+            <tr>
+              <th scope="row">
+                <a href="{{ order.order_status_url }}">{{ order.name }}</a>
+              </th>
+              <td>{{ order.created_at | date: '%b %d, %Y' }}</td>
+              <td>
+                {{ cart.currency.symbol -}}
+                {{- order.total_price | divided_by: 100.00 }}
+              </td>
+              <td>
+                <div class="rounded-pill btn {% if order.financial_status == "refunded" %}btn-danger{%elsif order.financial_status == "paid"%}btn-success{% else %}btn-primary{% endif %} px-4 text-center text-capitalize">
+                  {{ order.financial_status }}
+                </div>
+              </td>
+              <td>
+                <div class="rounded-pill btn btn-warning px-4 text-center text-capitalize">
+                  {{ order.fulfillment_status }}
+                </div>
+              </td>
+              <td>{{ order.item_count }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
 </section>
 
 {% schema %}
