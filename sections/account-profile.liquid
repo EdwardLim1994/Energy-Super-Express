@@ -1,0 +1,64 @@
+{% style %}
+  .address-card {
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  .address-card:hover {
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  }
+{% endstyle %}
+
+<section class="container-lg py-3">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">My Orders</li>
+    </ol>
+  </nav>
+  <h1>My Orders</h1>
+  <div class="table-responsive-md">
+    <table class="table align-middle table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Date</th>
+          <th scope="col">Total</th>
+          <th scope="col">Payment Status</th>
+          <th scope="col">Fullfillment Status</th>
+          <th scope="col">Items</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in customer.orders %}
+          <tr>
+            <th scope="row">
+              <a href="{{ order.order_status_url }}">{{ order.name }}</a>
+            </th>
+            <td>{{ order.created_at | date: '%b %d, %Y' }}</td>
+            <td>
+              {{ cart.currency.symbol -}}
+              {{- order.total_price | divided_by: 100.00 }}
+            </td>
+            <td>
+              <div class="rounded-pill btn btn-primary px-4 text-center text-capitalize">
+                {{ order.financial_status }}
+              </div>
+            </td>
+            <td>
+              <div class="rounded-pill btn btn-warning px-4 text-center text-capitalize">
+                {{ order.fulfillment_status }}
+              </div>
+            </td>
+            <td>{{ order.item_count }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Account Profile",
+  "settings": []
+}
+{% endschema %}
