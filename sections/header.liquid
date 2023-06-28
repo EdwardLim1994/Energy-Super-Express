@@ -1,10 +1,55 @@
-{% assign header_menu = section.settings.header_menu %}
-{% assign is_center = section.settings.is_menu_center %}
-{% assign has_dark_mode = settings.has_dark_mode %}
+{% liquid
+  assign header_menu = section.settings.header_menu
+  assign is_center = section.settings.is_menu_center
+  assign has_dark_mode = settings.has_dark_mode
+  assign show_annoucement = section.settings.show_annoucement
+  assign annoucement_background_color = section.settings.annoucement_background_color
+  assign annoucement_content = section.settings.annoucement_content
+  assign annoucement_text_color = section.settings.annoucement_text_color
+  assign can_close_annoucement = section.settings.can_close_annoucement
+  assign annoucement_bold_content = section.settings.annoucement_bold_content
+  assign annoucement_italic_content = section.settings.annoucement_italic_content
+  assign annoucement_content_position = section.settings.annoucement_content_position
+%}
 
-<div id="section-header">
+{% style %}
+  .annoucement__text{
+    color: {{ annoucement_text_color }};
+    {% if annoucement_bold_content %}
+    font-weight: bold;
+    {% endif %}
+    {% if annoucement_italic_content %}
+    font-style: italic;
+    {% endif %}
+  }
+
+  .annoucement__background{
+    background-color: {{ annoucement_background_color }};
+  }
+{% endstyle %}
+
+<div id="section-header" class="fixed-top">
+  {% if show_annoucement %}
+    <div
+      v-if="!closeAnnoucement"
+      class="d-flex justify-content-between align-items-center annoucement__background p-2 shadow"
+    >
+      {% if annoucement_content_position == 'centered' %}
+        <span></span>
+      {% endif %}
+      <p class="annoucement__text mb-0">{{ annoucement_content }}</p>
+      {% if can_close_annoucement %}
+        <button
+          @click="closeAnnoucement = true"
+          type="button"
+          class="btn-close annoucement__text"
+          aria-label="Close"
+        ></button>
+      {% endif %}
+    </div>
+  {% endif %}
   <nav
-    class="navbar fixed-top navbar-expand-lg bg-body-tertiary shadow"
+    class="navbar  navbar-expand-lg bg-body-tertiary shadow"
   >
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
@@ -251,6 +296,10 @@
   "tag": "header",
   "settings": [
     {
+      "type": "header",
+      "content": "Header Settings"
+    },
+    {
       "type": "link_list",
       "label": "Header Menu",
       "id": "header_menu",
@@ -261,6 +310,66 @@
       "label": "Is menu centered?",
       "default": false,
       "id": "is_menu_center"
+    },
+    {
+      "type": "header",
+      "content": "Annoucement bar"
+    },
+    {
+      "type": "checkbox",
+      "label": "Show annoucement bar?",
+      "id": "show_annoucement",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "label": "Can be closed?",
+      "id": "can_close_annoucement",
+      "default": true
+    },
+    {
+      "type": "color",
+      "label": "Background Color",
+      "id": "annoucement_background_color"
+    },
+    {
+      "type": "color",
+      "label": "Text Color",
+      "id": "annoucement_text_color"
+    },
+    {
+      "type": "text",
+      "label": "Content",
+      "id": "annoucement_content",
+      "default": "Annoucement Bar"
+    },
+    {
+      "type": "checkbox",
+      "label": "Bold content?",
+      "id": "annoucement_bold_content",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "label": "Italic content?",
+      "id": "annoucement_italic_content",
+      "default": false
+    },
+    {
+      "type": "radio",
+      "id": "annoucement_content_position",
+      "label": "Content position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "centered",
+          "label": "Centered"
+        }
+      ],
+      "default": "left"
     }
   ]
 }
