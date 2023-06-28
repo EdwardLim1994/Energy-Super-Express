@@ -13,6 +13,7 @@ export default function headerApp() {
 			const hasCheckedToS = ref(false);
 			const password = ref(null);
 			const confirmPassword = ref(null);
+			const closeAnnoucement = ref(false);
 
 			watch(confirmPassword, () => {
 				if (confirmPassword.value === password.value) {
@@ -28,6 +29,7 @@ export default function headerApp() {
 				password,
 				confirmPassword,
 				hasCheckedToS,
+				closeAnnoucement,
 			};
 		},
 	})
