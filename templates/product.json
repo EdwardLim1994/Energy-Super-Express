@@ -10,16 +10,14 @@
     "168792190182905096": {
       "type": "apps",
       "blocks": {
-        "40082fc7-5600-413e-bca6-649f81f6b435": {
-          "type": "shopify:\/\/apps\/product-review-app\/blocks\/star_rating\/9101f124-c360-4da3-8283-9a984f5314ba",
+        "bf041797-e4ba-4648-bbe0-c75eb473197e": {
+          "type": "shopify:\/\/apps\/product-review-app\/blocks\/reviews\/18213de9-0bcc-4598-a43e-b11ad4318209",
           "settings": {
-            "product": "{{product}}",
-            "colour": "#ff0000"
           }
         }
       },
       "block_order": [
-        "40082fc7-5600-413e-bca6-649f81f6b435"
+        "bf041797-e4ba-4648-bbe0-c75eb473197e"
       ],
       "settings": {
       }
