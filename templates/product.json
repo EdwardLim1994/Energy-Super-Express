@@ -1,8 +1,24 @@
 {
-	"sections": {
-		"main": {
-			"type": "product-detail"
-		}
-	},
-	"order": ["main"]
+  "sections": {
+    "main": {
+      "type": "product-detail",
+      "blocks": {
+        "0c407174-e434-4bba-b7f4-484bd361142a": {
+          "type": "shopify:\/\/apps\/product-review-app\/blocks\/reviews\/18213de9-0bcc-4598-a43e-b11ad4318209",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "0c407174-e434-4bba-b7f4-484bd361142a"
+      ],
+      "settings": {
+        "is_action_sticky": true,
+        "full_size_accordion": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
 }
