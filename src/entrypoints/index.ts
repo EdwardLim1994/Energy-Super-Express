@@ -9,7 +9,7 @@ import footerApp from "@/sections/footer";
 import productDetailApp from "@/sections/product-detail";
 
 (function () {
-	bootstrap;
+	window.bootstrap = bootstrap;
 
 	headerApp();
 	footerApp();
