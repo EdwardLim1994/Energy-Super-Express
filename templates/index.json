@@ -1,36 +1,61 @@
 {
-	"sections": {
-		"hero_banner": {
-			"type": "hero-banner"
-		},
-		"one_column": {
-			"type": "container",
-			"settings": {
-				"column_count": "1"
-			},
-			"blocks": {
-				"content": {
-					"type": "content_block"
-				}
-			}
-		},
-		"two_columns": {
-			"type": "container",
-			"settings": {
-				"column_count": "2"
-			},
-			"blocks": {
-				"image": {
-					"type": "image_block"
-				},
-				"content": {
-					"type": "content_block"
-				}
-			}
-		},
-		"feature_product": {
-			"type": "feature-product"
-		}
-	},
-	"order": ["hero_banner", "one_column", "two_columns", "feature_product"]
+  "sections": {
+    "hero_banner": {
+      "type": "hero-banner",
+      "settings": {
+        "show_indicator": false,
+        "autoplay": true
+      }
+    },
+    "one_column": {
+      "type": "container",
+      "settings": {
+        "no_gutter": false,
+        "column_count": "1",
+        "content_align": "left"
+      }
+    },
+    "two_columns": {
+      "type": "container",
+      "settings": {
+        "no_gutter": false,
+        "column_count": "2",
+        "content_align": "left"
+      }
+    },
+    "feature_product": {
+      "type": "feature-product",
+      "settings": {
+        "title": "Feature Products",
+        "total_card_per_page": 3,
+        "feature_products": [
+
+        ],
+        "has_gutter": true,
+        "show_slideshow": true
+      }
+    },
+    "1688711109399d66d3": {
+      "type": "apps",
+      "blocks": {
+        "4e79e761-e1c5-4730-965c-8678894e635f": {
+          "type": "shopify:\/\/apps\/product-review-app\/blocks\/testimonial\/18213de9-0bcc-4598-a43e-b11ad4318209",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "4e79e761-e1c5-4730-965c-8678894e635f"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "hero_banner",
+    "one_column",
+    "two_columns",
+    "feature_product",
+    "1688711109399d66d3"
+  ]
 }
