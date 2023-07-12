@@ -39,8 +39,8 @@
     "1688976952ad1bf283": {
       "type": "apps",
       "blocks": {
-        "be906c57-5e20-43b4-b023-f64aa6e5b903": {
-          "type": "shopify:\/\/apps\/product-review-app\/blocks\/feature.product\/18213de9-0bcc-4598-a43e-b11ad4318209",
+        "320b4ae1-d35c-442b-b7f5-dea7cb6d4285": {
+          "type": "shopify:\/\/apps\/product-review-app\/blocks\/feature-product\/18213de9-0bcc-4598-a43e-b11ad4318209",
           "settings": {
             "title": "Feature Products",
             "feature_products": [
@@ -61,7 +61,7 @@
         }
       },
       "block_order": [
-        "be906c57-5e20-43b4-b023-f64aa6e5b903",
+        "320b4ae1-d35c-442b-b7f5-dea7cb6d4285",
         "c8790425-d795-4564-aad3-7f30b3ff9b09"
       ],
       "settings": {
