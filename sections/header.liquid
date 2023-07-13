@@ -138,16 +138,16 @@
               <a href="{{ shop.url }}/account/logout" class="dropdown-item">Logout</a>
             </li>
           {%- else -%}
-            {% unless canonical_url contains '{{ shop.url }}account/login' or canonical_url contains 'account/register' %}
+            {% unless canonical_url contains '{{ shop.url }}/account/login' or canonical_url contains 'account/register' %}
               <li class="nav-link"><hr class="dropdown-divider"></li>
               <li class="nav-link">
                 <h6 class="dropdown-header">Customer</h6>
               </li>
               <li class="nav-item">
-                <a href="{{ shop.url }}account/login" class="nav-link"> Login </a>
+                <a href="{{ shop.url }}/account/login" class="nav-link"> Login </a>
               </li>
               <li class="nav-item">
-                <a href="{{ shop.url }}account/register" class="nav-link"> Register </a>
+                <a href="{{ shop.url }}/account/register" class="nav-link"> Register </a>
               </li>
             {% endunless %}
           {%- endif -%}
@@ -187,17 +187,17 @@
               <li><a class="dropdown-item" href="{{ shop.url }}/account">My Orders</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
-                <a href="/{{ shop.url }}account/logout" class="dropdown-item">Logout</a>
+                <a href="{{ shop.url }}/account/logout" class="dropdown-item">Logout</a>
               </li>
             </ul>
           </li>
         {%- else -%}
-          {% unless canonical_url contains '{{ shop.url }}account/login' or canonical_url contains 'account/register' %}
+          {% unless canonical_url contains '{{ shop.url }}/account/login' or canonical_url contains 'account/register' %}
             <li class="nav-item">
-              <a href="{{ shop.url }}account/login" class="btn"> Login </a>
+              <a href="{{ shop.url }}/account/login" class="btn"> Login </a>
             </li>
             <li class="nav-item">
-              <a href="{{ shop.url }}account/register" class="btn btn-primary"> Register </a>
+              <a href="{{ shop.url }}/account/register" class="btn btn-primary"> Register </a>
             </li>
           {% endunless %}
         {%- endif -%}

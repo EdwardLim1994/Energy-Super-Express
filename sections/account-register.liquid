@@ -104,7 +104,6 @@
             :aria-invalid="!isPasswordMatch && confirmPassword"
             :aria-describedby="!isPasswordMatch && confirmPassword ? RegisterForm-password-error : ''"
           >
-          [[!isPasswordMatch && confirmPassword]]
           <div
             v-if="!isPasswordMatch && confirmPassword"
             id="RegisterForm-password-error"
@@ -118,6 +117,12 @@
           <label class="form-check-label" for="RegisterForm-TnC"
             >I have agreed and accept <a class="link">Privary Policy</a> and
             <a class="link">Terms of Services</a></label
+          >
+        </div>
+        <div class="mb-3 form-check">
+          <input v-model="subscribeNewsletter" type="checkbox" class="form-check-input" id="RegisterForm-newlstter" name="customer[accepts_marketing]">
+          <label class="form-check-label" for="RegisterForm-newlstter"
+            >I wish to subscribe the newsletter</label
           >
         </div>
         <button

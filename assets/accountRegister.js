@@ -11,6 +11,7 @@ createApp({
 	setup() {
 		const isPasswordMatch = ref(false);
 		const hasCheckedToS = ref(false);
+		const subscribeNewsLetter = ref(false);
 		const password = ref(null);
 		const confirmPassword = ref(null);
 
@@ -23,6 +24,7 @@ createApp({
 		});
 
 		return {
+			subscribeNewsLetter,
 			isPasswordMatch,
 			password,
 			confirmPassword,
