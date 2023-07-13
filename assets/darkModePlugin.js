@@ -1,11 +1,11 @@
 import "https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js";
 
-export default DarkMode = {
+export const DarkMode = {
 	install: (app, options) => {
 		app.mixin({
 			data() {
 				return {
-					isDarkMode: !!Number(Cookie.get("darkMode")) ?? false,
+					isDarkMode: !!Number(Cookies.get("darkMode")) ?? false,
 				};
 			},
 			created() {
@@ -14,7 +14,7 @@ export default DarkMode = {
 			},
 			methods: {
 				handleDarkMode: function () {
-					Cookie.set("darkMode", Number(!this.isDarkMode), {
+					Cookies.set("darkMode", Number(!this.isDarkMode), {
 						path: "/",
 						expires: 7,
 					});
