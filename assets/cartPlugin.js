@@ -1,5 +1,5 @@
-import { cartAPI } from "./helper.js";
 import "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js";
+import { cartAPI } from "./helpers.js";
 
 export const Cart = {
 	install: (app, config) => {

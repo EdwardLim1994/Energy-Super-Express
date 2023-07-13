@@ -1,58 +1,64 @@
 {
-	"sections": {
-		"hero_banner": {
-			"type": "hero-banner",
-			"settings": {
-				"show_indicator": false,
-				"autoplay": true
-			}
-		},
-		"one_column": {
-			"type": "container",
-			"settings": {
-				"no_gutter": false,
-				"column_count": "1",
-				"content_align": "left"
-			}
-		},
-		"two_columns": {
-			"type": "container",
-			"settings": {
-				"no_gutter": false,
-				"column_count": "2",
-				"content_align": "left"
-			}
-		},
-		"1688976952ad1bf283": {
-			"type": "apps",
-			"blocks": {
-				"320b4ae1-d35c-442b-b7f5-dea7cb6d4285": {
-					"type": "shopify://apps/product-review-app/blocks/feature-product/18213de9-0bcc-4598-a43e-b11ad4318209",
-					"settings": {
-						"title": "Feature Products",
-						"feature_products": [
-							"multi-function-charging-stand-magnetic-wireless-charging-15w-fast-charging"
-						]
-					}
-				},
-				"c8790425-d795-4564-aad3-7f30b3ff9b09": {
-					"type": "shopify://apps/product-review-app/blocks/testimonial/18213de9-0bcc-4598-a43e-b11ad4318209",
-					"settings": {
-						"header": "Testimonial",
-						"sub_header": "See what our clients have said about our product",
-						"center_header": true,
-						"num_reviews": 3,
-						"min_rating": 4,
-						"autoscroll": true
-					}
-				}
-			},
-			"block_order": [
-				"320b4ae1-d35c-442b-b7f5-dea7cb6d4285",
-				"c8790425-d795-4564-aad3-7f30b3ff9b09"
-			],
-			"settings": {}
-		}
-	},
-	"order": ["hero_banner", "one_column", "two_columns", "1688976952ad1bf283"]
+  "sections": {
+    "hero_banner": {
+      "type": "hero-banner",
+      "settings": {
+        "show_indicator": false,
+        "autoplay": true
+      }
+    },
+    "one_column": {
+      "type": "container",
+      "settings": {
+        "no_gutter": false,
+        "column_count": "1",
+        "content_align": "left"
+      }
+    },
+    "two_columns": {
+      "type": "container",
+      "settings": {
+        "no_gutter": false,
+        "column_count": "2",
+        "content_align": "left"
+      }
+    },
+    "1688976952ad1bf283": {
+      "type": "apps",
+      "blocks": {
+        "320b4ae1-d35c-442b-b7f5-dea7cb6d4285": {
+          "type": "shopify:\/\/apps\/product-review-app\/blocks\/feature-product\/18213de9-0bcc-4598-a43e-b11ad4318209",
+          "settings": {
+            "title": "Feature Products",
+            "feature_products": [
+              "multi-function-charging-stand-magnetic-wireless-charging-15w-fast-charging"
+            ]
+          }
+        },
+        "c8790425-d795-4564-aad3-7f30b3ff9b09": {
+          "type": "shopify:\/\/apps\/product-review-app\/blocks\/testimonial\/18213de9-0bcc-4598-a43e-b11ad4318209",
+          "settings": {
+            "header": "Testimonial",
+            "sub_header": "See what our clients have said about our product",
+            "center_header": true,
+            "num_reviews": 3,
+            "min_rating": 4,
+            "autoscroll": true
+          }
+        }
+      },
+      "block_order": [
+        "320b4ae1-d35c-442b-b7f5-dea7cb6d4285",
+        "c8790425-d795-4564-aad3-7f30b3ff9b09"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "hero_banner",
+    "one_column",
+    "two_columns",
+    "1688976952ad1bf283"
+  ]
 }

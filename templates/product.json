@@ -1,8 +1,12 @@
 {
-	"sections": {
-		"main": {
-			"type": "product-detail"
-		}
-	},
-	"order": ["main"]
+  "sections": {
+    "main": {
+      "type": "product-detail",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
 }
