@@ -1,4 +1,4 @@
-import { cartAPI } from "@/helper";
+import { cartAPI } from "helper";
 import _ from "lodash";
 
 export default {

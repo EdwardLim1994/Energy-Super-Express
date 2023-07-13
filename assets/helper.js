@@ -1,9 +1,6 @@
-import { BREAKPOINT } from "./constants/breakpoint";
 import axios from "axios";
 
-type direction = ">" | "<";
-
-export const breakpoint = (breakpoint: BREAKPOINT, direction: direction) => {
+export const breakpoint = (breakpoint, direction) => {
 	let key = "";
 	switch (direction) {
 		case ">":

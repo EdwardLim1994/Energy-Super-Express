@@ -1,11 +1,12 @@
-import { getCookie, setCookie } from "typescript-cookie";
+//import { getCookie, setCookie } from "typescript-cookie";
+import Cookie from "js-cookie";
 
 export default {
 	install: (app, options) => {
 		app.mixin({
 			data() {
 				return {
-					isDarkMode: !!Number(getCookie("darkMode")) ?? false,
+					isDarkMode: !!Number(Cookie.get("darkMode")) ?? false,
 				};
 			},
 			created() {
@@ -14,7 +15,7 @@ export default {
 			},
 			methods: {
 				handleDarkMode: function () {
-					setCookie("darkMode", Number(!this.isDarkMode), {
+					Cookie.set("darkMode", Number(!this.isDarkMode), {
 						path: "/",
 						expires: 7,
 					});

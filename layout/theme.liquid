@@ -37,6 +37,20 @@
     <!-- shopify/apps -->
     {{ content_for_header }}
 
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.esm-browser.prod.min.js",
+          "axios": "https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js",
+          "lodash": "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js",
+          "js-cookie": "https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js",
+          "helper": "{{ 'helper.js' | asset_url }}"
+          "dark-mode-plugin": "{{ 'darkModePlugin.js' | asset_url }}",
+          "cart-plugin": "{{ 'cartPlugin.js' | asset_url }}",
+        }
+      }
+    </script>
+
     {% liquid
       # Always add entrypoint below content_for_header
       render 'adastra' with 'base.scss'
