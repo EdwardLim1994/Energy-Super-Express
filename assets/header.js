@@ -1,7 +1,11 @@
-import { createApp, ref, watch } from "vue";
+import {
+	createApp,
+	ref,
+	watch,
+} from "https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.esm-browser.prod.min.js";
 
-import DarkMode from "dark-mode-plugin";
-import Cart from "cart-plugin";
+import DarkMode from "./darkModePlugin";
+import Cart from "./cartPlugin";
 
 createApp({
 	compilerOptions: {

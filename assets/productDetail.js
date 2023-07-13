@@ -1,7 +1,11 @@
-import { createApp, reactive, ref } from "vue";
+import {
+	createApp,
+	reactive,
+	ref,
+} from "https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.esm-browser.prod.min.js";
 
-import { breakpoint } from "helper";
-import Cart from "cart-plugin";
+import { breakpoint } from "./helper";
+import Cart from "./cartPlugin";
 createApp({
 	compilerOptions: {
 		delimiters: ["[[", "]]"],

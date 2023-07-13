@@ -1,5 +1,4 @@
-//import { getCookie, setCookie } from "typescript-cookie";
-import Cookie from "js-cookie";
+import Cookie from "https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js";
 
 export default {
 	install: (app, options) => {

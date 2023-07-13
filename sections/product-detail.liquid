@@ -31,20 +31,6 @@
   }
 {% endstyle %}
 
-<script type="importmap">
-  {
-    "imports": {
-      "vue": "https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.esm-browser.prod.min.js",
-      "axios": "https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js",
-      "lodash": "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js",
-      "js-cookie": "https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js",
-      "helper": "{{ 'helper.js' | asset_url }}"
-      "dark-mode-plugin": "{{ 'darkModePlugin.js' | asset_url }}",
-      "cart-plugin": "{{ 'cartPlugin.js' | asset_url }}",
-    }
-  }
-</script>
-
 <section class="container-md mt-4">
   <div class="row mb-3 m-0">
     <div class="col col-lg-8 ps-0 d-flex flex-column row-gap-3">
@@ -311,59 +297,7 @@
   {% endif %}
 </section>
 
-<script type="module" defer>
-  import { createApp, reactive, ref } from 'vue';
-
-  import { breakpoint } from 'helper';
-  import Cart from 'cart-plugin';
-  createApp({
-    compilerOptions: {
-      delimiters: ['[[', ']]'],
-    },
-    setup() {
-      const isDesktop = ref(breakpoint('768px', '>'));
-      const chosenVariant = reactive({
-        id: null,
-        sku: null,
-        title: null,
-        price: null,
-        compare_at_price: null,
-        max: null,
-      });
-
-      const qty = ref(1);
-
-      function selectVariant(id, title, price, compare_at_price, qty) {
-        chosenVariant.id = id;
-        chosenVariant.title = title;
-        chosenVariant.price = price;
-        chosenVariant.compare_at_price = compare_at_price;
-        chosenVariant.max = qty;
-      }
-
-      function incrementQty() {
-        qty.value = qty.value + 1;
-      }
-
-      function decrementQty() {
-        qty.value = qty.value - 1;
-      }
-
-      return {
-        isDesktop,
-        chosenVariant,
-        qty,
-        selectVariant,
-        incrementQty,
-        decrementQty,
-      };
-    },
-  })
-    .use(Cart)
-    .mount('#product-detail');
-</script>
-
-{% comment %} <script type="module" src="{{ 'productDetail.js' | asset_url }}"></script> {% endcomment %}
+<script type="module" src="{{ 'productDetail.js' | asset_url }}"></script>
 
 {% schema %}
 {
