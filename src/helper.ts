@@ -1,4 +1,4 @@
-import "https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js";
+import axios from "axios";
 
 export const breakpoint = (breakpoint, direction) => {
 	let key = "";
