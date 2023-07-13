@@ -1,0 +1,34 @@
+<section
+  style="height: 54.5vh;"
+  class="d-flex container flex-column justify-content-center align-items-center row-gap-2"
+>
+  <h1>{{ section.settings.heading }}</h1>
+  <p>{{ section.settings.subheading }}</p>
+  <button class="btn btn-primary" href="{{ shop.url }}">{{ section.settings.button_text }}</button>
+</section>
+
+{% schema %}
+{
+  "name": "404",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Heading",
+      "id": "heading",
+      "default": "404 Not Found"
+    },
+    {
+      "type": "text",
+      "label": "Subheading",
+      "id": "subheading",
+      "default": "Looks like the page doesn't exist"
+    },
+    {
+      "type": "text",
+      "label": "Button text",
+      "id": "button_text",
+      "default": "Return to Homepage"
+    }
+  ]
+}
+{% endschema %}
