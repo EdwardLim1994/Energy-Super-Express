@@ -1,6 +1,6 @@
-import Cookie from "https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js";
+import "https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js";
 
-export default {
+export default DarkMode = {
 	install: (app, options) => {
 		app.mixin({
 			data() {

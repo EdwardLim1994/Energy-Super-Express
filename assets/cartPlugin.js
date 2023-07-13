@@ -1,7 +1,7 @@
 import { cartAPI } from "./helper.js";
-import _ from "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js";
+import "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js";
 
-export default {
+export default Cart = {
 	install: (app, config) => {
 		app.mixin({
 			data() {
