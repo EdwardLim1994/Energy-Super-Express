@@ -4,8 +4,9 @@ import {
 	ref,
 } from "https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.esm-browser.prod.min.js";
 
-import { breakpoint } from "./helper";
-import Cart from "./cartPlugin";
+import { breakpoint } from "./helper.js";
+import Cart from "./cartPlugin.js";
+
 createApp({
 	compilerOptions: {
 		delimiters: ["[[", "]]"],
