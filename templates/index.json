@@ -35,11 +35,23 @@
     },
     "one_column": {
       "type": "container",
+      "blocks": {
+        "a2a2d3f8-583f-4aab-9bd4-e085eb0b9778": {
+          "type": "content_block",
+          "settings": {
+            "content": "<p>Write your content here<\/p>",
+            "shadow": false
+          }
+        }
+      },
+      "block_order": [
+        "a2a2d3f8-583f-4aab-9bd4-e085eb0b9778"
+      ],
       "settings": {
         "no_gutter": false,
         "shadow": false,
         "column_count": "1",
-        "content_align": "left"
+        "content_align": "centered"
       }
     },
     "two_columns": {
