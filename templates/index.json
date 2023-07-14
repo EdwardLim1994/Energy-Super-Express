@@ -40,6 +40,7 @@
           "type": "content_block",
           "settings": {
             "content": "<p>Write your content here<\/p>",
+            "content_align": "centered",
             "shadow": false
           }
         }
@@ -50,8 +51,7 @@
       "settings": {
         "no_gutter": false,
         "shadow": false,
-        "column_count": "1",
-        "content_align": "centered"
+        "column_count": "1"
       }
     },
     "two_columns": {
@@ -59,8 +59,7 @@
       "settings": {
         "no_gutter": false,
         "shadow": false,
-        "column_count": "2",
-        "content_align": "left"
+        "column_count": "2"
       }
     },
     "1688976952ad1bf283": {
