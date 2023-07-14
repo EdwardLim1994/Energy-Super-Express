@@ -11,6 +11,7 @@
       "type": "container",
       "settings": {
         "no_gutter": false,
+        "shadow": false,
         "column_count": "1",
         "content_align": "left"
       }
@@ -19,6 +20,7 @@
       "type": "container",
       "settings": {
         "no_gutter": false,
+        "shadow": false,
         "column_count": "2",
         "content_align": "left"
       }
@@ -31,7 +33,7 @@
           "settings": {
             "title": "Feature Products",
             "feature_products": [
-              "multi-function-charging-stand-magnetic-wireless-charging-15w-fast-charging"
+
             ]
           }
         },
