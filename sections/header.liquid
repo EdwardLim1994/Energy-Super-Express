@@ -10,6 +10,7 @@
   assign annoucement_bold_content = section.settings.annoucement_bold_content
   assign annoucement_italic_content = section.settings.annoucement_italic_content
   assign annoucement_content_position = section.settings.annoucement_content_position
+  assign annoucement_shadow = section.settings.annoucement_shadow
 %}
 
 {% style %}
@@ -32,7 +33,7 @@
   {% if show_annoucement %}
     <div
       v-if="!closeAnnoucement"
-      class="d-flex justify-content-between align-items-center annoucement__background p-2 shadow"
+      class="d-flex justify-content-between align-items-center annoucement__background p-2 {% if shadow %}shadow{% endif %}"
     >
       {% if annoucement_content_position == 'centered' %}
         <span></span>
@@ -328,9 +329,16 @@
       "default": true
     },
     {
+      "type": "checkbox",
+      "label": "Has shadow?",
+      "id": "annoucement_shadow",
+      "default": true
+    },
+    {
       "type": "color",
       "label": "Background Color",
-      "id": "annoucement_background_color"
+      "id": "annoucement_background_color",
+      "default": "#ffffff"
     },
     {
       "type": "color",
