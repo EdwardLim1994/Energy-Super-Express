@@ -2,7 +2,19 @@
   "sections": {
     "main": {
       "type": "product-detail",
+      "blocks": {
+        "0f850393-f361-47e4-b040-100ccce4395c": {
+          "type": "shopify:\/\/apps\/product-review-app\/blocks\/reviews\/18213de9-0bcc-4598-a43e-b11ad4318209",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "0f850393-f361-47e4-b040-100ccce4395c"
+      ],
       "settings": {
+        "is_action_sticky": true,
+        "full_size_accordion": true
       }
     }
   },
