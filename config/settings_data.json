@@ -7,7 +7,7 @@
       "header": {
         "type": "header",
         "settings": {
-          "header_menu": "main-menu",
+          "header_menu": "",
           "is_menu_center": false,
           "show_annoucement": true,
           "can_close_annoucement": true,

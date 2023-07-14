@@ -36,28 +36,28 @@
     "two_columns": {
       "type": "container",
       "blocks": {
+        "e9417381-b613-456e-accd-34e1adc91eb2": {
+          "type": "content_block",
+          "settings": {
+            "content": "<h3><strong>Introducing the All-in-One Wireless Charger,<\/strong> <\/h3><h5><strong>the ultimate solution to simplify your charging needs<\/strong><\/h5><p>Experience the convenience of a clutter-free charging space as the All-in-One Wireless Charger offers seamless compatibility with a wide range of devices, including smartphones, smartwatches, and even wireless earbuds. Say goodbye to the frustration of searching for different chargers for each device, as this all-inclusive solution saves you time and keeps your workspace organized.<\/p><p>Invest in the All-in-One Wireless Charger today and enjoy the benefits of a simplified charging experience, streamlined workspace, and efficient device charging. It's time to bid farewell to cable clutter and embrace the future of wireless charging.<\/p>",
+            "content_text_align": "right",
+            "content_align_vertical": "right",
+            "content_align_horizontal": "right",
+            "content_padding": "5",
+            "shadow": false
+          }
+        },
         "5f14106d-a9d3-4292-9a5f-3f990e2afcae": {
           "type": "image_block",
           "settings": {
             "image": "shopify:\/\/shop_images\/46255242-008e-49a3-880b-329ea0439d2f.jpg",
             "shadow": false
           }
-        },
-        "e9417381-b613-456e-accd-34e1adc91eb2": {
-          "type": "content_block",
-          "settings": {
-            "content": "<h3><strong>Introducing the All-in-One Wireless Charger,<\/strong> <\/h3><h5><strong>the ultimate solution to simplify your charging needs<\/strong><\/h5><p>Experience the convenience of a clutter-free charging space as the All-in-One Wireless Charger offers seamless compatibility with a wide range of devices, including smartphones, smartwatches, and even wireless earbuds. Say goodbye to the frustration of searching for different chargers for each device, as this all-inclusive solution saves you time and keeps your workspace organized.<\/p><p>Invest in the All-in-One Wireless Charger today and enjoy the benefits of a simplified charging experience, streamlined workspace, and efficient device charging. It's time to bid farewell to cable clutter and embrace the future of wireless charging.<\/p>",
-            "content_text_align": "left",
-            "content_align_vertical": "left",
-            "content_align_horizontal": "centered",
-            "content_padding": "5",
-            "shadow": false
-          }
         }
       },
       "block_order": [
-        "5f14106d-a9d3-4292-9a5f-3f990e2afcae",
-        "e9417381-b613-456e-accd-34e1adc91eb2"
+        "e9417381-b613-456e-accd-34e1adc91eb2",
+        "5f14106d-a9d3-4292-9a5f-3f990e2afcae"
       ],
       "settings": {
         "no_gutter": true,
