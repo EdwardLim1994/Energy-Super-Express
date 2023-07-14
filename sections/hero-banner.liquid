@@ -40,7 +40,7 @@
       {% endfor %}
     </div>
   {% endif %}
-  <div class="carousel-inner drk">
+  <div class="carousel-inner drk" style="height: 700px;">
     {% if section.blocks == empty %}
       <div class="carousel-item relative active">
         {{ 'lifestyle-2' | placeholder_svg_tag }}
@@ -59,7 +59,7 @@
               {{
                 block.settings.background_image
                 | image_url: width: 1800, height: 800
-                | image_tag: class: 'd-block img-fluid object-fit-cover'
+                | image_tag: class: 'd-block w-100 object-fit-cover'
               }}
               <div class="carousel-caption z-2">
                 <h3 class="text-white">{{ block.settings.heading }}</h3>
