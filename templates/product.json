@@ -3,6 +3,8 @@
     "main": {
       "type": "product-detail",
       "settings": {
+        "is_action_sticky": true,
+        "full_size_accordion": false
       }
     }
   },
