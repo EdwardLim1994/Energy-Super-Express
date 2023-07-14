@@ -2,6 +2,7 @@
   assign no_gutter = section.settings.no_gutter
   assign shadow = section.settings.shadow
   assign column = ''
+  assign content_alignment = ''
   case section.settings.column_count
     when '1'
       assign column = 'col-12'
@@ -9,6 +10,14 @@
       assign column = 'col-12 col-md-6'
     when '3'
       assign column = 'col-12 col-md-4'
+  endcase
+  case section.settings.content_alignment
+    when 'left'
+      assign content_alignment = 'text-start'
+    when 'center'
+      assign content_alignment = 'text-center'
+    when 'right'
+      assign content_alignment = 'text-end'
   endcase
 %}
 <section class="w-100 {% if no_gutter %}container-fluid px-0{% else %}container{% endif %} {% if shadow %}shadow{% endif %}">
@@ -56,7 +65,7 @@
             {%- when '@app' -%}
               {% render block %}
             {%- when 'content_block' -%}
-              <div class="p-3">
+              <div class="p-3 {{ content_alignment }}">
                 {{ block.settings.content }}
               </div>
             {%- when 'image_block' -%}
