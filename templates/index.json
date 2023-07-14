@@ -2,6 +2,32 @@
   "sections": {
     "hero_banner": {
       "type": "hero-banner",
+      "blocks": {
+        "c453046e-fc15-4721-b136-94e04540a211": {
+          "type": "slide",
+          "settings": {
+            "background_image": "shopify:\/\/shop_images\/807ac9b6-af59-4ae5-b74c-48a96e6d1efe.jpg",
+            "heading": "Meet The Supreme All-in-one Charger",
+            "subheading": "The way to change your live",
+            "call_to_action": "shopify:\/\/products\/multi-function-charging-stand-magnetic-wireless-charging-15w-fast-charging",
+            "call_to_action_text": "Buy Now"
+          }
+        },
+        "e887f514-47e7-4928-b187-7e338e5a7ce1": {
+          "type": "slide",
+          "settings": {
+            "background_image": "shopify:\/\/shop_images\/pexels-hana-brannigan-4004228.jpg",
+            "heading": "Tired of Getting Too Much Cables to Charge Things?",
+            "subheading": "Our product can save your trouble!!",
+            "call_to_action": "shopify:\/\/products\/multi-function-charging-stand-magnetic-wireless-charging-15w-fast-charging",
+            "call_to_action_text": "Get Yours Now"
+          }
+        }
+      },
+      "block_order": [
+        "c453046e-fc15-4721-b136-94e04540a211",
+        "e887f514-47e7-4928-b187-7e338e5a7ce1"
+      ],
       "settings": {
         "show_indicator": false,
         "autoplay": true
