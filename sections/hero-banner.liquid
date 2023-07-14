@@ -16,10 +16,9 @@
 {% assign min = 1 %}
 {% assign max = 100 %}
 {% assign diff = max | minus: min %}
-{% assign randomNumber = 'now' | date: '%N' | modulo: diff | plus: min %}
 
 <div
-  id="hero-banner-{{ randomNumber }}"
+  id="hero-banner"
   class="carousel slide"
   {% if section.settings.autoplay %}
     data-bs-ride="carousel"
@@ -30,7 +29,7 @@
       {% for block in section.blocks %}
         <button
           type="button"
-          data-bs-target="#hero-banner-{{ randomNumber }}"
+          data-bs-target="#hero-banner"
           data-bs-slide-to="{{ forloop.index | minus: 1 }}"
           aria-label="Hero Slide {{ forloop.index }}"
           {%- if forloop.index == 1 -%}
@@ -42,34 +41,44 @@
     </div>
   {% endif %}
   <div class="carousel-inner drk">
-    {% for block in section.blocks %}
-      {% case block.type %}
-        {%- when '@app' -%}
-          {% render block %}
-        {% when 'slide' %}
-          <div class="carousel-item relative {% if forloop.index == 1 %}active{% endif %}">
-            {{
-              block.settings.background_image
-              | image_url: width: 1800, height: 800
-              | image_tag: class: 'd-block img-fluid object-fit-cover'
-            }}
-            <div class="carousel-caption z-2">
-              <h3 class="text-white">{{ block.settings.heading }}</h3>
-              <p class="text-white">{{ block.settings.subheading }}</p>
-              {% if block.settings.call_to_action %}
-                <a href="{{ block.settings.call_to_action }}" class="btn btn-primary">
-                  {{ block.settings.call_to_action_text }}
-                </a>
-              {% endif %}
+    {% if section.blocks == empty %}
+      <div class="carousel-item relative active">
+        {{ 'lifestyle-2' | placeholder_svg_tag }}
+        <div class="carousel-caption z-2">
+          <h3 class="text-white">Hero Banner heading</h3>
+          <p class="text-white">Hero Banner Subheading</p>
+        </div>
+      </div>
+    {% else %}
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {%- when '@app' -%}
+            {% render block %}
+          {% when 'slide' %}
+            <div class="carousel-item relative {% if forloop.index == 1 %}active{% endif %}">
+              {{
+                block.settings.background_image
+                | image_url: width: 1800, height: 800
+                | image_tag: class: 'd-block img-fluid object-fit-cover'
+              }}
+              <div class="carousel-caption z-2">
+                <h3 class="text-white">{{ block.settings.heading }}</h3>
+                <p class="text-white">{{ block.settings.subheading }}</p>
+                {% if block.settings.call_to_action %}
+                  <a href="{{ block.settings.call_to_action }}" class="btn btn-primary">
+                    {{ block.settings.call_to_action_text }}
+                  </a>
+                {% endif %}
+              </div>
             </div>
-          </div>
-      {% endcase %}
-    {% endfor %}
+        {% endcase %}
+      {% endfor %}
+    {% endif %}
   </div>
   <button
     class="carousel-control-prev"
     type="button"
-    data-bs-target="#hero-banner-{{ randomNumber }}"
+    data-bs-target="#hero-banner"
     data-bs-slide="prev"
   >
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -78,7 +87,7 @@
   <button
     class="carousel-control-next"
     type="button"
-    data-bs-target="#hero-banner-{{ randomNumber }}"
+    data-bs-target="#hero-banner"
     data-bs-slide="next"
   >
     <span class="carousel-control-next-icon" aria-hidden="true"></span>

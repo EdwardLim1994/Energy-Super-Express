@@ -1,35 +1,79 @@
-{% assign column = '' %}
-{% case section.settings.column_count %}
-  {% when '2' %}
-    {% assign column = 'col-12 col-md-6' %}
-  {% when '3' %}
-    {% assign column = 'col-12 col-md-4' %}
-{% endcase %}
-<section class="w-100 {% unless section.settings.no_gutter %}container-fluid{% else %}container{% endunless %}">
-  {% if section.settings.column_count != '1' %}
-    <div class="row">
-  {% endif %}
-  {% for block in section.blocks %}
-    {% if column != '' %}
-      <div class="{{ column }}">
-    {% endif %}
-    {%- case block.type -%}
-      {%- when '@app' -%}
-        {% render block %}
-      {%- when 'content_block' -%}
-        <div class="p-3">
-          {{ block.settings.content }}
+{% liquid
+  assign no_gutter = section.settings.no_gutter
+  assign shadow = section.settings.shadow
+  assign column = ''
+  case section.settings.column_count
+    when '1'
+      assign column = 'col-12'
+    when '2'
+      assign column = 'col-12 col-md-6'
+    when '3'
+      assign column = 'col-12 col-md-4'
+  endcase
+%}
+<section class="w-100 {% if no_gutter %}container-fluid px-0{% else %}container{% endif %} {% if shadow %}shadow{% endif %}">
+  <div class="row">
+    {% if section.blocks == empty %}
+      {% case section.settings.column_count %}
+        {% when '1' %}
+          <div
+            style="height: 30vh;"
+            class="{{ column }} {% if no_gutter %}mx-0 px-0{% endif %} d-flex flex-column justify-content-center align-items-center"
+          >
+            <h3>Container Placeholder</h3>
+            <p>Please add blocks to add your content</p>
+          </div>
+        {% when '2' %}
+          <div class="{{ column }} {% if no_gutter %}mx-0 px-0{% endif %}">
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'w-100 h-100' }}
+          </div>
+          <div
+            style="height: 30vh;"
+            class="{{ column }} {% if no_gutter %}mx-0 px-0{% endif %} d-flex flex-column justify-content-center align-items-center"
+          >
+            <h3>Container Placeholder</h3>
+            <p>Please add blocks to add your content</p>
+          </div>
+        {% when '3' %}
+          <div class="{{ column }} {% if no_gutter %}mx-0 px-0{% endif %}">
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'w-100  h-100' }}
+          </div>
+          <div
+            style="height: 30vh;"
+            class="{{ column }} {% if no_gutter %}mx-0 px-0{% endif %} d-flex flex-column justify-content-center align-items-center"
+          >
+            <h3>Container Placeholder</h3>
+            <p>Please add blocks to add your content</p>
+          </div>
+          <div class="{{ column }} {% if no_gutter %}mx-0 px-0{% endif %}">
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'w-100  h-100' }}
+          </div>
+      {% endcase %}
+    {% else %}
+      {% for block in section.blocks %}
+        <div class="{{ column }} {% if no_gutter %}mx-0 px-0{% endif %} {% if block.settings.shadow %}shadow{% endif %}">
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              {% render block %}
+            {%- when 'content_block' -%}
+              <div class="p-3">
+                {{ block.settings.content }}
+              </div>
+            {%- when 'image_block' -%}
+              {% if block.settings.image %}
+                {{
+                  block.settings.image
+                  | image_url: width: 1800
+                  | image_tag: class: 'd-block img-fluid object-fit-cover'
+                }}
+              {% else %}
+                {{ 'lifestyle-2' | placeholder_svg_tag: 'w-100  h-100' }}
+              {% endif %}
+          {%- endcase -%}
         </div>
-      {%- when 'image_block' -%}
-        {{ block.settings.image | image_url: width: 1800 | image_tag: class: 'd-block img-fluid object-fit-cover' }}
-    {%- endcase -%}
-    {% if column != '' %}
-      </div>
+      {% endfor %}
     {% endif %}
-  {% endfor %}
-  {% if section.settings.column_count != '1' %}
-    </div>
-  {% endif %}
+  </div>
 </section>
 
 {% schema %}
@@ -49,6 +93,12 @@
           "id": "content",
           "label": "Content",
           "default": "<p>Write your content here</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "shadow",
+          "label": "Has shadow?",
+          "default": false
         }
       ]
     },
@@ -60,6 +110,12 @@
           "type": "image_picker",
           "label": "Image",
           "id": "image"
+        },
+        {
+          "type": "checkbox",
+          "id": "shadow",
+          "label": "Has shadow?",
+          "default": false
         }
       ]
     }
@@ -69,6 +125,12 @@
       "type": "checkbox",
       "id": "no_gutter",
       "label": "No Gutter?",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "shadow",
+      "label": "Has shadow?",
       "default": false
     },
     {
