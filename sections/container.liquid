@@ -59,11 +59,11 @@
               {% liquid
                 assign content_alignment_vertical = ''
                 case block.settings.content_align_vertical
-                  when 'left'
+                  when 'top'
                     assign content_alignment_vertical = 'justify-content-start'
                   when 'centered'
                     assign content_alignment_vertical = 'justify-content-center'
-                  when 'right'
+                  when 'bottom'
                     assign content_alignment_vertical = 'justify-content-end'
                 endcase
                 assign content_alignment_horizontal = ''
@@ -85,7 +85,7 @@
                     assign content_text_alignment = 'text-end'
                 endcase
               %}
-              <div class="p-3 d-flex flex-column {{ content_text_alignment }} {% if block.settings.content_padding != '0' %}p-{{ block.settings.content_padding }}{% endif %} {{ content_alignment_vertical }} {{ content_alignment_horizontal }}">
+              <div class="p-3 d-flex flex-column w-100 h-100 {{ content_text_alignment }} {% if block.settings.content_padding != '0' %}p-{{ block.settings.content_padding }}{% endif %} {{ content_alignment_vertical }} {{ content_alignment_horizontal }}">
                 {{ block.settings.content }}
               </div>
             {%- when 'image_block' -%}
@@ -149,19 +149,19 @@
           "label": "Content alignment in vertical axis",
           "options": [
             {
-              "value": "left",
-              "label": "Left"
+              "value": "top",
+              "label": "Top"
             },
             {
-              "value": "right",
-              "label": "Right"
+              "value": "bottom",
+              "label": "Bottom"
             },
             {
               "value": "centered",
               "label": "Centered"
             }
           ],
-          "default": "left"
+          "default": "top"
         },
         {
           "type": "radio",
