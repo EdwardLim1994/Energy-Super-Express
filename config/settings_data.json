@@ -8,7 +8,16 @@
         "type": "header",
         "settings": {
           "header_menu": "main-menu",
-          "is_menu_center": false
+          "is_menu_center": false,
+          "show_annoucement": true,
+          "can_close_annoucement": true,
+          "annoucement_shadow": true,
+          "annoucement_background_color": "#ff3838",
+          "annoucement_text_color": "#ffffff",
+          "annoucement_content": "This is a test store. No order will be fulfilled",
+          "annoucement_bold_content": false,
+          "annoucement_italic_content": false,
+          "annoucement_content_position": "centered"
         }
       },
       "footer": {
@@ -23,6 +32,8 @@
           "a4165996-80fa-4174-a8d2-62dbc1e100e4": {
             "type": "footer_menu",
             "settings": {
+              "menu": "footer",
+              "title": "Menu"
             }
           },
           "6779a95f-1478-4417-9723-34bd3780dd6b": {
