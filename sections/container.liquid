@@ -57,17 +57,26 @@
               {% render block %}
             {%- when 'content_block' -%}
               {% liquid
-                assign content_alignment = ''
-                case block.settings.content_align
+                assign content_alignment_vertical = ''
+                case block.settings.content_align_vertical
                   when 'left'
-                    assign content_alignment = 'text-start'
+                    assign content_alignment_vertical = 'justify-content-start'
                   when 'centered'
-                    assign content_alignment = 'text-center'
+                    assign content_alignment_vertical = 'justify-content-center'
                   when 'right'
-                    assign content_alignment = 'text-end'
+                    assign content_alignment_vertical = 'justify-content-end'
+                endcase
+                assign content_alignment_horizontal = ''
+                case block.settings.content_align_vertical
+                  when 'left'
+                    assign content_alignment_horizontal = 'align-items-start'
+                  when 'centered'
+                    assign content_alignment_horizontal = 'align-items-center'
+                  when 'right'
+                    assign content_alignment_horizontal = 'align-items-end'
                 endcase
               %}
-              <div class="p-3 {{ content_alignment }}">
+              <div class="p-3 d-flex flex-column {{ content_alignment_vertical }} {{ content_alignment_horizontal }}">
                 {{ block.settings.content }}
               </div>
             {%- when 'image_block' -%}
@@ -107,8 +116,28 @@
         },
         {
           "type": "radio",
-          "id": "content_align",
-          "label": "Content alignment",
+          "id": "content_align_vertical",
+          "label": "Content alignment in vertical axis",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            },
+            {
+              "value": "centered",
+              "label": "Centered"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "radio",
+          "id": "content_align_horizontal",
+          "label": "Content alignment in horizontal axis",
           "options": [
             {
               "value": "left",
