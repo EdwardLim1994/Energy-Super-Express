@@ -127,6 +127,7 @@
     </div>
     <div class="d-none d-lg-block col col-md-4 pe-0" id="product-detail">
       <div class="{% if is_action_sticky %}product-detail--sticky-position sticky-top{% endif %}">
+        [[isDesktop]]
         <teleport :disabled="isDesktop" to="#product-detail-sidebar">
           <form @submit.prevent="addCartItem(chosenVariant.id, qty)">
             <div class="p-3 w-100  bg-body-tertiary rounded shadow ">
