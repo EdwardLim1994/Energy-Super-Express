@@ -126,7 +126,7 @@
         {% endunless %}
       </div>
     </div>
-    <div class="d-lg-block d-none col col-md-4 pe-0" id="product-detail">
+    <div class="d-block d-lg-none col col-md-4 pe-0" id="product-detail">
       <div class="{% if is_action_sticky %}product-detail--sticky-position sticky-top{% endif %}">
         <teleport :disabled="isDesktop" to="#product-detail-sidebar">
           <form @submit.prevent="addCartItem(chosenVariant.id, qty)">
