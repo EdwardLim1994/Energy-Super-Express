@@ -89,7 +89,9 @@
         class="d-flex d-lg-none justify-content-between align-items-center "
         id="product-detail-sidebar"
       >
-        {{ full_size_accordion }}
+        {% unless full_size_accordion %}
+          {{ true }}
+          {% endunless %}
         {% unless full_size_accordion %}
           <div class="accordion" id="product-accordion">
             <div class="accordion-item">
