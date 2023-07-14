@@ -33,27 +33,6 @@
         "autoplay": true
       }
     },
-    "one_column": {
-      "type": "container",
-      "blocks": {
-        "a2a2d3f8-583f-4aab-9bd4-e085eb0b9778": {
-          "type": "content_block",
-          "settings": {
-            "content": "<p>Write your content here<\/p>",
-            "content_align": "centered",
-            "shadow": false
-          }
-        }
-      },
-      "block_order": [
-        "a2a2d3f8-583f-4aab-9bd4-e085eb0b9778"
-      ],
-      "settings": {
-        "no_gutter": false,
-        "shadow": false,
-        "column_count": "1"
-      }
-    },
     "two_columns": {
       "type": "container",
       "settings": {
@@ -93,12 +72,35 @@
       ],
       "settings": {
       }
+    },
+    "one_column": {
+      "type": "container",
+      "blocks": {
+        "a2a2d3f8-583f-4aab-9bd4-e085eb0b9778": {
+          "type": "content_block",
+          "settings": {
+            "content": "<h3>Get Yours Now<\/h3><p>Before it sold out<\/p>",
+            "content_align_vertical": "centered",
+            "content_align_horizontal": "centered",
+            "content_padding": "3",
+            "shadow": false
+          }
+        }
+      },
+      "block_order": [
+        "a2a2d3f8-583f-4aab-9bd4-e085eb0b9778"
+      ],
+      "settings": {
+        "no_gutter": false,
+        "shadow": false,
+        "column_count": "1"
+      }
     }
   },
   "order": [
     "hero_banner",
-    "one_column",
     "two_columns",
-    "1688976952ad1bf283"
+    "1688976952ad1bf283",
+    "one_column"
   ]
 }
