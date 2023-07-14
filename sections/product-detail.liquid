@@ -90,7 +90,9 @@
         id="product-detail-sidebar"
       >
         {% unless full_size_accordion %}
-          {{ true }}
+          {{ "true" }}
+          {% else %}
+          {{ "false" }}
           {% endunless %}
         {% unless full_size_accordion %}
           <div class="accordion" id="product-accordion">
