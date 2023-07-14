@@ -46,10 +46,11 @@
         "e9417381-b613-456e-accd-34e1adc91eb2": {
           "type": "content_block",
           "settings": {
-            "content": "<h3>Experience the Ultimate Convenience of Our All-in-One Wireless Charging Solution<\/h3><h3><\/h3><p>Simplify and Streamline Your Charging Experience with our All-in-One Wireless Charger!<\/p><p><\/p><p>Get yours now and save your troubles<\/p>",
-            "content_align_vertical": "centered",
+            "content": "<h3><strong>Introducing the All-in-One Wireless Charger,<\/strong> <\/h3><h5><strong>the ultimate solution to simplify your charging needs<\/strong><\/h5><p>Experience the convenience of a clutter-free charging space as the All-in-One Wireless Charger offers seamless compatibility with a wide range of devices, including smartphones, smartwatches, and even wireless earbuds. Say goodbye to the frustration of searching for different chargers for each device, as this all-inclusive solution saves you time and keeps your workspace organized.<\/p><p>Invest in the All-in-One Wireless Charger today and enjoy the benefits of a simplified charging experience, streamlined workspace, and efficient device charging. It's time to bid farewell to cable clutter and embrace the future of wireless charging.<\/p>",
+            "content_text_align": "left",
+            "content_align_vertical": "left",
             "content_align_horizontal": "centered",
-            "content_padding": "3",
+            "content_padding": "5",
             "shadow": false
           }
         }
@@ -103,6 +104,7 @@
           "type": "content_block",
           "settings": {
             "content": "<h3>Get Yours Now<\/h3><p>Before it sold out<\/p>",
+            "content_text_align": "left",
             "content_align_vertical": "centered",
             "content_align_horizontal": "centered",
             "content_padding": "3",
