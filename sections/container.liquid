@@ -75,17 +75,8 @@
                   when 'right'
                     assign content_alignment_horizontal = 'align-items-end'
                 endcase
-                assign content_text_alignment = ''
-                case block.settings.content_align_vertical
-                  when 'left'
-                    assign content_text_alignment = 'text-start'
-                  when 'centered'
-                    assign content_text_alignment = 'text-center'
-                  when 'right'
-                    assign content_text_alignment = 'text-end'
-                endcase
               %}
-              <div class="p-3 d-flex flex-column {{ content_text_alignment }} {% if block.settings.content_padding != '0' %}p-{{ block.settings.content_padding }}{% endif %} {{ content_alignment_vertical }} {{ content_alignment_horizontal }}">
+              <div class="p-3 d-flex flex-column {% if block.settings.content_padding != '0' %}p-{{ block.settings.content_padding }}{% endif %} {{ content_alignment_vertical }} {{ content_alignment_horizontal }}">
                 {{ block.settings.content }}
               </div>
             {%- when 'image_block' -%}
@@ -122,26 +113,6 @@
           "id": "content",
           "label": "Content",
           "default": "<p>Write your content here</p>"
-        },
-        {
-          "type": "radio",
-          "id": "content_text_align",
-          "label": "Content Text Alignment",
-          "options": [
-            {
-              "value": "left",
-              "label": "Left"
-            },
-            {
-              "value": "right",
-              "label": "Right"
-            },
-            {
-              "value": "centered",
-              "label": "Centered"
-            }
-          ],
-          "default": "left"
         },
         {
           "type": "radio",
