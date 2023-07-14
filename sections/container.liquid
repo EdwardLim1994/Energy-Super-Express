@@ -58,6 +58,7 @@
             {%- when 'content_block' -%}
               {% liquid
                 assign content_alignment = ''
+                echo block.settings.content_align
                 case block.settings.content_align
                   when 'left'
                     assign content_alignment = 'text-start'
