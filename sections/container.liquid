@@ -76,7 +76,7 @@
                     assign content_alignment_horizontal = 'align-items-end'
                 endcase
               %}
-              <div class="p-3 d-flex flex-column {{ content_alignment_vertical }} {{ content_alignment_horizontal }}">
+              <div class="p-3 d-flex flex-column {% if block.settings.content_padding != '0' %}p-{{ block.settings.content_padding }}{% endif %} {{ content_alignment_vertical }} {{ content_alignment_horizontal }}">
                 {{ block.settings.content }}
               </div>
             {%- when 'image_block' -%}
@@ -154,6 +154,7 @@
           ],
           "default": "left"
         },
+
         {
           "type": "checkbox",
           "id": "shadow",
