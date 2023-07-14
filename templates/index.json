@@ -46,9 +46,9 @@
         "e9417381-b613-456e-accd-34e1adc91eb2": {
           "type": "content_block",
           "settings": {
-            "content": "<p>Write your content here<\/p>",
-            "content_align_vertical": "left",
-            "content_align_horizontal": "left",
+            "content": "<h3>Experience the Ultimate Convenience of Our All-in-One Wireless Charging Solution<\/h3><h3><\/h3><p>Simplify and Streamline Your Charging Experience with our All-in-One Wireless Charger!<\/p><p><\/p><p>Get yours now and save your troubles<\/p>",
+            "content_align_vertical": "centered",
+            "content_align_horizontal": "centered",
             "content_padding": "3",
             "shadow": false
           }
