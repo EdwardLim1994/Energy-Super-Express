@@ -68,6 +68,7 @@
           "settings": {
             "header": "Testimonial",
             "sub_header": "See what our clients have said about our product",
+            "show_no_review": false,
             "center_header": true,
             "num_reviews": 3,
             "min_rating": 4,
