@@ -67,65 +67,13 @@
     },
     "1688976952ad1bf283": {
       "type": "apps",
-      "blocks": {
-        "320b4ae1-d35c-442b-b7f5-dea7cb6d4285": {
-          "type": "shopify:\/\/apps\/product-review-app\/blocks\/feature-product\/18213de9-0bcc-4598-a43e-b11ad4318209",
-          "settings": {
-            "title": "Feature Products",
-            "feature_products": [
-              "multi-function-charging-stand-magnetic-wireless-charging-15w-fast-charging"
-            ]
-          }
-        },
-        "c8790425-d795-4564-aad3-7f30b3ff9b09": {
-          "type": "shopify:\/\/apps\/product-review-app\/blocks\/testimonial\/18213de9-0bcc-4598-a43e-b11ad4318209",
-          "settings": {
-            "header": "Testimonial",
-            "sub_header": "See what our clients have said about our product",
-            "show_no_review": false,
-            "center_header": true,
-            "num_reviews": 3,
-            "min_rating": 4,
-            "autoscroll": true
-          }
-        }
-      },
-      "block_order": [
-        "320b4ae1-d35c-442b-b7f5-dea7cb6d4285",
-        "c8790425-d795-4564-aad3-7f30b3ff9b09"
-      ],
       "settings": {
-      }
-    },
-    "one_column": {
-      "type": "container",
-      "blocks": {
-        "a2a2d3f8-583f-4aab-9bd4-e085eb0b9778": {
-          "type": "content_block",
-          "settings": {
-            "content": "<h3>Get Yours Now<\/h3><p>Before it sold out<\/p>",
-            "content_text_align": "left",
-            "content_align_vertical": "centered",
-            "content_align_horizontal": "centered",
-            "content_padding": "3",
-            "shadow": false
-          }
-        }
-      },
-      "block_order": [
-        "a2a2d3f8-583f-4aab-9bd4-e085eb0b9778"
-      ],
-      "settings": {
-        "no_gutter": false,
-        "shadow": false,
-        "column_count": "1"
       }
     }
   },
   "order": [
     "hero_banner",
     "two_columns",
-    "1688976952ad1bf283",
-    "one_column"
+    "1688976952ad1bf283"
   ]
 }
